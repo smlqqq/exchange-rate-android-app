@@ -10,6 +10,19 @@
     android:layout_marginHorizontal="16dp">
 
     <TextView
+        android:id="@+id/textData"
+        android:layout_width="151dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="204dp"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,42 +48,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/secondView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textData2"
-        app:layout_constraintVertical_bias="0.631" />
-
-    <TextView
-        android:id="@+id/thirdView"
-        android:layout_width="326dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="32dp"
-        android:textColor="#000000"
-        android:textSize="25dp"
-        android:textStyle="bold"
-
-        app:layout_constraintBottom_toTopOf="@+id/fourthView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/fourthView"
-        android:layout_width="326dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="24dp"
-        android:textColor="#000000"
-        android:textSize="25dp"
-        android:textStyle="bold"
-
-        app:layout_constraintBottom_toTopOf="@+id/fifthView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textCump_Vanz"
+        app:layout_constraintVertical_bias="0.7" />
 
     <TextView
         android:id="@+id/fifthView"
@@ -78,14 +59,30 @@
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="148dp"
         android:textColor="#000000"
         android:textSize="25dp"
         android:textStyle="bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/thirdView"
+        android:layout_width="326dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toTopOf="@+id/fourthView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -94,14 +91,30 @@
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="12dp"
         android:textColor="#000000"
         android:textSize="25dp"
         android:textStyle="bold"
 
         app:layout_constraintBottom_toTopOf="@+id/thirdView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fourthView"
+        android:layout_width="326dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toTopOf="@+id/fifthView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -119,15 +132,16 @@
         app:strokeColor="#000000" />
 
     <TextView
-        android:id="@+id/textData2"
-        android:layout_width="151dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="192dp"
+        android:id="@+id/textCump_Vanz"
+        android:layout_width="259dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="72dp"
         android:textColor="#000000"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="MissingConstraints" />
 

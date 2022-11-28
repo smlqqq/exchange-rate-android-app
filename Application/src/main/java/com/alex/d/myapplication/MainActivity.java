@@ -12,9 +12,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
-import java.util.Iterator;
-
 public class MainActivity extends AppCompatActivity {
 
 
@@ -25,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView thirdView;
     private TextView fourthView;
     private TextView fifthView;
-    private TextView textData2;
+    private TextView textData;
+    private TextView textCump_Vanz;
+
 
 
 
@@ -39,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         thirdView = findViewById(R.id.thirdView);
         fourthView = findViewById(R.id.fourthView);
         fifthView = findViewById(R.id.fifthView);
-        textData2 = findViewById(R.id.textData2);
+        textData = findViewById(R.id.textData);
+        textCump_Vanz = findViewById(R.id.textCump_Vanz);
 
         update_button = findViewById(R.id.update_button);
 
@@ -83,30 +83,33 @@ public class MainActivity extends AppCompatActivity {
             Elements head = doc.getElementsByTag("thead");
             Element hh = head.get(0);
             Elements elements_from_tag = hh.children();
-
             Log.d("MyLog", "head: " + elements_from_tag.get(0).child(1).text());
-            textData2.setText(elements_from_tag.get(0).child(1).text());
+            textData.setText(elements_from_tag.get(0).child(1).text());
 
+
+            Element head2 = head.get(0);
+            Elements cumpare_vanzare = head2.children();
+            textCump_Vanz.setText(cumpare_vanzare.get(1).child(1).text() + "      " + cumpare_vanzare.get(1).child(2).text());
 
             Element dollar = elements_from_table.get(0);
             Elements dollar_elements = dollar.children();
-            firstView.setText(dollar_elements.get(0).text() + "  " + dollar_elements.get(1).text() + " mdl /  " + dollar_elements.get(2).text() + " mdl ");
+            firstView.setText(dollar_elements.get(0).text() + "  " + dollar_elements.get(1).text() + " / " + dollar_elements.get(2).text());
 
             Element euro = elements_from_table.get(1);
             Elements euro_elements = euro.children();
-            secondView.setText(euro_elements.get(0).text() + "  " + euro_elements.get(1).text() + " mdl /  " + euro_elements.get(2).text() + " mdl ");
+            secondView.setText(euro_elements.get(0).text() + "  " + euro_elements.get(1).text() + " / " + euro_elements.get(2).text());
 
             Element ron = elements_from_table.get(3);
             Elements ron_elements = ron.children();
-            thirdView.setText(ron_elements.get(0).text() + "  " + ron_elements.get(1).text() + " mdl /  " + ron_elements.get(2).text() + " mdl ");
+            thirdView.setText(ron_elements.get(0).text() + "  " + ron_elements.get(1).text() + " / " + ron_elements.get(2).text());
 
             Element uah = elements_from_table.get(4);
             Elements uah_elements = uah.children();
-            fourthView.setText(uah_elements.get(0).text() + "  " + uah_elements.get(1).text() + " mdl / " + uah_elements.get(2).text() + " mdl ");
+            fourthView.setText(uah_elements.get(0).text() + "  " + uah_elements.get(1).text() + " / " + uah_elements.get(2).text());
 
             Element gbp = elements_from_table.get(5);
             Elements gbp_elements = gbp.children();
-            fifthView.setText(gbp_elements.get(0).text() + "  " + gbp_elements.get(1).text() + " mdl / " + gbp_elements.get(2).text() + " mdl ");
+            fifthView.setText(gbp_elements.get(0).text() + "  " + gbp_elements.get(1).text() + " / " + gbp_elements.get(2).text());
 
 
 
