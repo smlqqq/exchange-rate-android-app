@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name" />
+    <string name="app_name">Currency(MICB)</string>
     <string name="textview">TextView</string>
 </resources>
