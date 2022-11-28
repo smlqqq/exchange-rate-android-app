@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         thirdView = findViewById(R.id.thirdView);
         fourthView = findViewById(R.id.fourthView);
         fifthView = findViewById(R.id.fifthView);
+        textData2 = findViewById(R.id.textData2);
 
         update_button = findViewById(R.id.update_button);
 
@@ -78,11 +79,13 @@ public class MainActivity extends AppCompatActivity {
             Elements tt = doc.getElementsByTag("tbody");
             Element our_table = tt.get(0);
             Elements elements_from_table = our_table.children();
-//
-//            Elements head = doc.getElementsByClass("date-currency");
-//            Element hh = head.get(0);
-//            Elements elements_from_class = hh.children();
-//            textData2.setText(elements_from_class.text());
+
+            Elements head = doc.getElementsByTag("thead");
+            Element hh = head.get(0);
+            Elements elements_from_tag = hh.children();
+
+            Log.d("MyLog", "head: " + elements_from_tag.get(0).child(1).text());
+            textData2.setText(elements_from_tag.get(0).child(1).text());
 
 
             Element dollar = elements_from_table.get(0);
