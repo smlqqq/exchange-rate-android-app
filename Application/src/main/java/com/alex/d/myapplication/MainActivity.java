@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView fourthView;
     private TextView fifthView;
     private TextView textData2;
-    private Toolbar mytoolbar;
 
 
 
@@ -37,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mytoolbar = findViewById(R.id.mytoolbar);
         firstView = findViewById(R.id.firstView);
         secondView = findViewById(R.id.secondView);
         thirdView = findViewById(R.id.thirdView);

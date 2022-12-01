@@ -8,16 +8,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="16dp">
-    <include android:id="@+id/mytoolbar"
-        layout="@layout/toolbar"
-        app:layout_constraintBottom_toTopOf="parent"/>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="MICB Currency"
+        android:textAlignment="center"
+        android:textColor="#FFC107"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/firstView"
         android:layout_width="326dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="10dp"
 
         android:textColor="#000000"
@@ -26,7 +37,9 @@
         app:layout_constraintBottom_toTopOf="@+id/secondView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.545" />
 
     <TextView
         android:id="@+id/thirdView"
@@ -133,16 +146,5 @@
         app:layout_constraintStart_toEndOf="@+id/textDate"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="113dp" />
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbar"
-        android:layout_width="377dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
