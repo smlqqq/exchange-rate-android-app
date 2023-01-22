@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
             doc = Jsoup.connect("https://valutar.md/ru").get();
             Elements tbody = doc.getElementsByTag("tbody");
             Element our_table = tbody.get(0);
-            Elements elements_from_table = our_table.children();
 
 
             for (int i = 0; i < our_table.childrenSize(); i++) {
