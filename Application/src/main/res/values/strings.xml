@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">MICB Currency</string>
+    <string name="app_name">Курс валют</string>
     <string name="textview">TextView</string>
 </resources>
