@@ -4,22 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +63,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     };
+    String[] images = {
+            "https://www.valutar.md/assets/7dcc2c93/img/banks/icons/banca-nationala.png",
+            "https://www.valutar.md/ru/banks/moldova-agroindbank",
+            "https://www.valutar.md/ru/banks/moldindconbank"
+    };
+
+    int[] img = {R.drawable.nationala, R.drawable.agroindbank, R.drawable.moldindconbank,
+            R.drawable.victoriabank, R.drawable.mobiasbanca, R.drawable.eximbank,
+            R.drawable.procredit, R.drawable.fincombank, R.drawable.energbank,
+            R.drawable.bcr, R.drawable.comertbank, R.drawable.eurocreditbank,
+            R.drawable.nologo, R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,
+    };
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -65,12 +88,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     public void getInfo() {
 
 
         listView = findViewById(R.id.listView);
+//        imageView = findViewById(R.id.imageView);
         arrayList = new ArrayList<>();
-        adapter = new CustomArrayAdapter(this, R.layout.row, arrayList, getLayoutInflater(), urls);
+//        adapter = new CustomArrayAdapter(this, R.layout.row, arrayList, getLayoutInflater(), urls, images);
+        adapter = new CustomArrayAdapter(this, R.layout.row, arrayList, getLayoutInflater(), urls, img);
         listView.setAdapter(adapter);
 
 
@@ -78,12 +105,16 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 getWeb();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
 
     }
+
+
+
 
 
     @SuppressLint("SetTextI18n")
@@ -96,15 +127,16 @@ public class MainActivity extends AppCompatActivity {
             Element our_table = tbody.get(0);
 
 
-            for (int i = 0; i < our_table.childrenSize(); i++) {
+//            for (int i = 0; i < our_table.childrenSize(); i++) {
 //            for (int i = 0; i < 12; i++) {
+            for (int i = 0; i < 21; i++) {
 
                 ListItemClass item = new ListItemClass();
+                item.setImageUrl(Arrays.toString(images));
                 item.setData1(our_table.children().get(i).child(0).text());
                 item.setData2(our_table.children().get(i).child(1).text());
                 item.setData3(our_table.children().get(i).child(2).text());
                 arrayList.add(item);
-
             }
 
             runOnUiThread(() -> adapter.notifyDataSetChanged());
@@ -115,4 +147,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 }

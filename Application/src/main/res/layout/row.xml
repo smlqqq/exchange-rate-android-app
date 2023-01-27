@@ -7,17 +7,26 @@
     android:orientation="horizontal"
     android:padding="16dp">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
     <TextView
         android:id="@+id/tvData1"
         android:layout_width="162dp"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/tvData2"

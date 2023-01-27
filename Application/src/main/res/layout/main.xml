@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="100dp"
+        android:layout_width="84dp"
         android:layout_height="25dp"
         android:layout_marginEnd="12dp"
         android:text="Продажа"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="100dp"
+        android:layout_width="63dp"
         android:layout_height="25dp"
         android:layout_marginTop="12dp"
         android:text="Покупка"
@@ -51,18 +51,20 @@
         android:id="@+id/listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:text="Банк "
+        android:layout_marginStart="84dp"
+        android:text="Название"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textStyle="italic"

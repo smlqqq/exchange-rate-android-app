@@ -5,15 +5,26 @@ public class ListItemClass {
     String data1;
     String data2;
     String data3;
+    String imageUrl;
 
-    public ListItemClass(String data1, String data2, String data3) {
+
+
+    public ListItemClass(String data1, String data2, String data3, String image) {
         this.data1 = data1;
         this.data2 = data2;
         this.data3 = data3;
+        this.imageUrl = image;
     }
 
     public ListItemClass() {
 
+    }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getData1() {
