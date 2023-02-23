@@ -3,32 +3,19 @@ package com.alex.d.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
             "https://valutar.md/ru/exchange-offices/nelus-grup-csv",
             "https://valutar.md/ru/exchange-offices/protanir-csv",
             "https://valutar.md/ru/exchange-offices/vadisan-csv"
+    };
 
 
-    };
-    String[] images = {
-            "https://www.valutar.md/assets/7dcc2c93/img/banks/icons/banca-nationala.png",
-            "https://www.valutar.md/ru/banks/moldova-agroindbank",
-            "https://www.valutar.md/ru/banks/moldindconbank"
-    };
+//    String[] images = {
+//            "https://www.valutar.md/assets/7dcc2c93/img/banks/icons/banca-nationala.png",
+//            "https://www.valutar.md/ru/banks/moldova-agroindbank",
+//            "https://www.valutar.md/ru/banks/moldindconbank"
+//    };
 
     int[] img = {R.drawable.nationala, R.drawable.agroindbank, R.drawable.moldindconbank,
             R.drawable.victoriabank, R.drawable.mobiasbanca, R.drawable.eximbank,
@@ -97,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 //        imageView = findViewById(R.id.imageView);
         arrayList = new ArrayList<>();
 //        adapter = new CustomArrayAdapter(this, R.layout.row, arrayList, getLayoutInflater(), urls, images);
-        adapter = new CustomArrayAdapter(this, R.layout.row, arrayList, getLayoutInflater(), urls, img);
+        adapter = new CustomArrayAdapter(this, R.layout.row2, arrayList, getLayoutInflater(), urls, img);
         listView.setAdapter(adapter);
 
 
@@ -113,10 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
     @SuppressLint("SetTextI18n")
     public void getWeb() {
 
@@ -128,15 +111,19 @@ public class MainActivity extends AppCompatActivity {
 
 
 //            for (int i = 0; i < our_table.childrenSize(); i++) {
-//            for (int i = 0; i < 12; i++) {
             for (int i = 0; i < 21; i++) {
 
                 ListItemClass item = new ListItemClass();
-                item.setImageUrl(Arrays.toString(images));
                 item.setData1(our_table.children().get(i).child(0).text());
                 item.setData2(our_table.children().get(i).child(1).text());
                 item.setData3(our_table.children().get(i).child(2).text());
+                item.setData4(our_table.children().get(i).child(3).text());
+                item.setData5(our_table.children().get(i).child(4).text());
+                item.setData6(our_table.children().get(i).child(7).text());
+                item.setData7(our_table.children().get(i).child(8).text());
+
                 arrayList.add(item);
+
             }
 
             runOnUiThread(() -> adapter.notifyDataSetChanged());
@@ -147,5 +134,4 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
 }

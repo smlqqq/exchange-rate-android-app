@@ -10,8 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,15 +24,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
     private List<ListItemClass> listItem;
     private Context context;
     private String[] urls;
-//    private String[] images;
+    //    private String[] images;
     private int[] images;
-
-
-
-
-
-
-
 
     public CustomArrayAdapter(@NonNull Context context, int resource, List<ListItemClass> listItem, LayoutInflater inflater, String[] urls, int[] images) {
         super(context, resource, listItem);
@@ -43,9 +34,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         this.context = context;
         this.urls = urls;
         this.images = images;
-
-
     }
+
 
     @NonNull
     @Override
@@ -54,13 +44,18 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
         ListItemClass listItemMain = listItem.get(position);
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.row, null, false);
+            convertView = inflater.inflate(R.layout.row2, null, false);
             viewHolder = new ViewHolder(convertView);
 
             viewHolder.imageView = convertView.findViewById(R.id.imageView);
             viewHolder.data1 = convertView.findViewById(R.id.tvData1);
             viewHolder.data2 = convertView.findViewById(R.id.tvData2);
             viewHolder.data3 = convertView.findViewById(R.id.tvData3);
+            viewHolder.data4 = convertView.findViewById(R.id.tvData4);
+            viewHolder.data5 = convertView.findViewById(R.id.tvData5);
+            viewHolder.data6 = convertView.findViewById(R.id.tvData6);
+            viewHolder.data7 = convertView.findViewById(R.id.tvData7);
+
             convertView.setTag(viewHolder);
 
         } else {
@@ -70,7 +65,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
 //        Picasso.get().load(images[position].replace(" ", "%20")).resize(35,35).into(viewHolder.imageView);
 //        Glide.with(context).load(images[position]).into(viewHolder.imageView);
-
 
 
 //        Picasso.get().load(listItemMain.getImageUrl()).into(viewHolder.imageView);
@@ -88,6 +82,11 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         viewHolder.data1.setText(listItemMain.getData1());
         viewHolder.data2.setText(listItemMain.getData2());
         viewHolder.data3.setText(listItemMain.getData3());
+        viewHolder.data4.setText(listItemMain.getData4());
+        viewHolder.data5.setText(listItemMain.getData5());
+        viewHolder.data6.setText(listItemMain.getData6());
+        viewHolder.data7.setText(listItemMain.getData7());
+
 //        viewHolder.imageView.setImageURI(Uri.parse(images[position]));
 
 //        Picasso.get().load(images[position]).into(viewHolder.imageView);
@@ -115,10 +114,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         });
 
 
-
         return convertView;
     }
-
 
 
     private class ViewHolder {
@@ -127,12 +124,22 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         TextView data1;
         TextView data2;
         TextView data3;
+        TextView data4;
+        TextView data5;
+        TextView data6;
+        TextView data7;
 
-        public ViewHolder(View v){
+
+        public ViewHolder(View v) {
             imageView = v.findViewById(R.id.imageView);
             data1 = v.findViewById(R.id.tvData1);
             data2 = v.findViewById(R.id.tvData2);
             data3 = v.findViewById(R.id.tvData3);
+            data4 = v.findViewById(R.id.tvData4);
+            data5 = v.findViewById(R.id.tvData5);
+            data6 = v.findViewById(R.id.tvData6);
+            data7 = v.findViewById(R.id.tvData7);
+
 
         }
 

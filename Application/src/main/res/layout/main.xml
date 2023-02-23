@@ -5,27 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="84dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="12dp"
-        android:text="Продажа"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView4"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginEnd="12dp"-->
+<!--        android:text="Продажа"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textStyle="italic"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/textView3" />-->
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="63dp"
+        android:layout_width="40dp"
         android:layout_height="25dp"
+        android:layout_marginStart="112dp"
         android:layout_marginTop="12dp"
-        android:text="Покупка"
-        android:textAlignment="textEnd"
+        android:text="Buy"
+        android:textAlignment="center"
         android:textColor="#0C0C0C"
-        android:textStyle="italic"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="12dp"
+        android:text="Sell"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -33,17 +49,17 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="382dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:text="Курс валют банков Молдовы"
+        android:layout_width="179dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="4dp"
+        android:text="Exchange rates"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#040404"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,23 +67,20 @@
         android:id="@+id/listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        android:layout_marginStart="84dp"
-        android:text="Название"
-        android:textAlignment="center"
+        android:layout_marginStart="76dp"
+        android:text="Bank name"
+        android:textAlignment="textStart"
         android:textColor="#000000"
-        android:textStyle="italic"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
