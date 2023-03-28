@@ -55,6 +55,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
             viewHolder.data5 = convertView.findViewById(R.id.tvData5);
             viewHolder.data6 = convertView.findViewById(R.id.tvData6);
             viewHolder.data7 = convertView.findViewById(R.id.tvData7);
+            viewHolder.data11 = convertView.findViewById(R.id.tvData11);
+            viewHolder.data12 = convertView.findViewById(R.id.tvData12);
 
             convertView.setTag(viewHolder);
 
@@ -86,6 +88,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         viewHolder.data5.setText(listItemMain.getData5());
         viewHolder.data6.setText(listItemMain.getData6());
         viewHolder.data7.setText(listItemMain.getData7());
+        viewHolder.data11.setText(listItemMain.getData11());
+        viewHolder.data12.setText(listItemMain.getData12());
 
 //        viewHolder.imageView.setImageURI(Uri.parse(images[position]));
 
@@ -128,6 +132,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         TextView data5;
         TextView data6;
         TextView data7;
+        TextView data11;
+        TextView data12;
 
 
         public ViewHolder(View v) {
@@ -139,6 +145,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
             data5 = v.findViewById(R.id.tvData5);
             data6 = v.findViewById(R.id.tvData6);
             data7 = v.findViewById(R.id.tvData7);
+            data11 = v.findViewById(R.id.tvData11);
+            data12 = v.findViewById(R.id.tvData12);
 
 
         }
