@@ -13,6 +13,8 @@ public class ListItemClass {
     private String data5;
     private String data6;
     private String data7;
+    private String data11;
+    private String data12;
     private String imageUrl;
 
     public String getData4() {
@@ -31,6 +33,35 @@ public class ListItemClass {
         this.data5 = data5;
     }
 
+    public ListItemClass(String data1, String data2, String data3, String data4, String data5, String data6, String data7, String data11, String data12, String imageUrl) {
+        this.data1 = data1;
+        this.data2 = data2;
+        this.data3 = data3;
+        this.data4 = data4;
+        this.data5 = data5;
+        this.data6 = data6;
+        this.data7 = data7;
+        this.data11 = data11;
+        this.data12 = data12;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getData11() {
+        return data11;
+    }
+
+    public void setData11(String data11) {
+        this.data11 = data11;
+    }
+
+    public String getData12() {
+        return data12;
+    }
+
+    public void setData12(String data12) {
+        this.data12 = data12;
+    }
+
     public String getData6() {
         return data6;
     }
@@ -47,16 +78,7 @@ public class ListItemClass {
         this.data7 = data7;
     }
 
-    public ListItemClass(String data1, String data2, String data3, String data4, String data5, String data6, String data7, String imageUrl) {
-        this.data1 = data1;
-        this.data2 = data2;
-        this.data3 = data3;
-        this.data4 = data4;
-        this.data5 = data5;
-        this.data6 = data6;
-        this.data7 = data7;
-        this.imageUrl = imageUrl;
-    }
+
 
 
 //    public ListItemClass(String data1, String data2, String data3, String image) {

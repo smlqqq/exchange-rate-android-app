@@ -10,18 +10,18 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="66dp"
+        android:layout_height="89dp"
         android:layout_weight="1">
 
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="53dp"
-            android:layout_height="49dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="26dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_launcher_background" />
 
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="3dp"
-            android:layout_toStartOf="@+id/tvData10"
+            android:layout_toStartOf="@+id/EURO"
             android:layout_toEndOf="@+id/imageView"
             android:layout_weight="1"
             android:gravity="center"
@@ -43,7 +43,7 @@
             tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/tvData9"
+            android:id="@+id/USD"
             android:layout_width="42dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -58,10 +58,10 @@
             tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/tvData10"
+            android:id="@+id/EURO"
             android:layout_width="42dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData9"
+            android:layout_below="@+id/USD"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="20dp"
             android:layout_toStartOf="@+id/tvData4"
@@ -75,16 +75,33 @@
             tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/tvData11"
+            android:id="@+id/RomLeu"
             android:layout_width="42dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData9"
+            android:layout_below="@+id/USD"
             android:layout_marginTop="22dp"
             android:layout_marginEnd="20dp"
             android:layout_toStartOf="@+id/tvData4"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Lei"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:id="@+id/BritainPound"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/USD"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/tvData4"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="£"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -138,22 +155,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvData6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData4"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="5dp"
-            android:layout_toStartOf="@+id/tvData3"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#F4511E"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/tvData5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -170,6 +171,22 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvData6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvData4"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/tvData3"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#F4511E"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/tvData7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -178,6 +195,38 @@
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0027FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvData11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvData4"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/tvData3"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#F4511E"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvData12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvData5"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="-1dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"

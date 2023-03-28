@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
                 item.setData5(our_table.children().get(i).child(4).text());
                 item.setData6(our_table.children().get(i).child(7).text());
                 item.setData7(our_table.children().get(i).child(8).text());
+                item.setData11(our_table.children().get(i).child(11).text());
+                item.setData12(our_table.children().get(i).child(12).text());
 
                 arrayList.add(item);
 
