@@ -155,6 +155,22 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvData7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvData5"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0027FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/tvData5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -187,14 +203,30 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvData7"
+            android:id="@+id/tvData11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvData4"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/tvData3"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#F4511E"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvData12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvData5"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="-1dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
