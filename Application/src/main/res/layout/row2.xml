@@ -20,14 +20,14 @@
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="1dp"
             android:layout_marginBottom="26dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/tvData1"
-            android:layout_width="117dp"
+            android:layout_width="110dp"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="3dp"
@@ -199,38 +199,6 @@
             android:gravity="center"
             android:text="TextView"
             android:textColor="#F4511E"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvData11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData4"
-            android:layout_gravity="center"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="5dp"
-            android:layout_toStartOf="@+id/tvData3"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#F4511E"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvData12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData5"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="-1dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#0027FF"
             android:textSize="16sp"
             android:textStyle="bold" />
 
