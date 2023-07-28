@@ -26,18 +26,41 @@ public class MainActivity extends AppCompatActivity {
     private List<ListItemClass> arrayList;
 
 
-    String[] urls = {"https://valutar.md/ru/banks/banca-nationala",
-            "https://valutar.md/ru/banks/moldova-agroindbank",
-            "https://valutar.md/ru/banks/moldindconbank",
-            "https://valutar.md/ru/banks/victoriabank",
-            "https://valutar.md/ru/banks/mobiasbanca",
-            "https://valutar.md/ru/banks/eximbank",
-            "https://valutar.md/ru/banks/procredit-bank",
-            "https://valutar.md/ru/banks/fincombank",
-            "https://valutar.md/ru/banks/energbank",
-            "https://valutar.md/ru/banks/bcr-chisinau",
-            "https://valutar.md/ru/banks/comertbank",
-            "https://valutar.md/ru/banks/eurocreditbank",
+    String[] urls = {
+//            "https://valutar.md/ru/banks/banca-nationala",
+//            "https://valutar.md/ru/banks/moldova-agroindbank",
+//            "https://valutar.md/ru/banks/moldindconbank",
+//            "https://valutar.md/ru/banks/victoriabank",
+//            "https://valutar.md/ru/banks/mobiasbanca",
+//            "https://valutar.md/ru/banks/eximbank",
+//            "https://valutar.md/ru/banks/procredit-bank",
+//            "https://valutar.md/ru/banks/fincombank",
+//            "https://valutar.md/ru/banks/energbank",
+//            "https://valutar.md/ru/banks/bcr-chisinau",
+//            "https://valutar.md/ru/banks/comertbank",
+//            "https://valutar.md/ru/banks/eurocreditbank",
+//            "https://valutar.md/ru/exchange-offices/deghest-csv",
+//            "https://valutar.md/ru/exchange-offices/clio-csv",
+//            "https://valutar.md/ru/exchange-offices/orion-csv",
+//            "https://valutar.md/ru/exchange-offices/profx-schimb-csv",
+//            "https://valutar.md/ru/exchange-offices/ciocana-csv",
+//            "https://valutar.md/ru/exchange-offices/calisto-ng-csv",
+//            "https://valutar.md/ru/exchange-offices/nelus-grup-csv",
+//            "https://valutar.md/ru/exchange-offices/protanir-csv",
+//            "https://valutar.md/ru/exchange-offices/vadisan-csv"
+
+            "https://www.bnm.md/",
+            "https://www.maib.md/ro",
+            "https://www.micb.md/",
+            "https://www.victoriabank.md/ru/",
+            "https://www.mobiasbanca.md/",
+            "https://eximbank.md/ro",
+            "https://www.procreditbank.md/",
+            "https://fincombank.com/",
+            "https://www.energbank.com",
+            "https://www.bcr.md/",
+            "https://comertbank.md/",
+            "https://www.ecb.md/",
             "https://valutar.md/ru/exchange-offices/deghest-csv",
             "https://valutar.md/ru/exchange-offices/clio-csv",
             "https://valutar.md/ru/exchange-offices/orion-csv",
@@ -60,9 +83,8 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.victoriabank, R.drawable.mobiasbanca, R.drawable.eximbank,
             R.drawable.procredit, R.drawable.fincombank, R.drawable.energbank,
             R.drawable.bcr, R.drawable.comertbank, R.drawable.eurocreditbank,
-            R.drawable.nologo, R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,R.drawable.nologo,
+            R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo,
     };
-
 
 
     @SuppressLint("MissingInflatedId")
@@ -74,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         getInfo();
 
     }
-
 
 
     public void getInfo() {
