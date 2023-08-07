@@ -3,12 +3,16 @@ package com.alex.d.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,6 +21,8 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,17 +79,19 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-//    String[] images = {
-//            "https://www.valutar.md/assets/7dcc2c93/img/banks/icons/banca-nationala.png",
-//            "https://www.valutar.md/ru/banks/moldova-agroindbank",
-//            "https://www.valutar.md/ru/banks/moldindconbank"
-//    };
+    String[] images = {
+            "https://www.valutar.md/assets/7dcc2c93/img/banks/icons/banca-nationala.png",
+            "https://www.valutar.md/ru/banks/moldova-agroindbank",
+            "https://www.valutar.md/ru/banks/moldindconbank"
+    };
+
+
 
     int[] img = {R.drawable.nationala, R.drawable.agroindbank, R.drawable.moldindconbank,
             R.drawable.victoriabank, R.drawable.mobiasbanca, R.drawable.eximbank,
             R.drawable.procredit, R.drawable.fincombank, R.drawable.energbank,
             R.drawable.bcr, R.drawable.comertbank, R.drawable.eurocreditbank,
-            R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo,
+            R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin,
     };
 
 
@@ -94,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         getInfo();
+
 
     }
 
@@ -144,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 item.setData7(our_table.children().get(i).child(8).text());
                 item.setData11(our_table.children().get(i).child(11).text());
                 item.setData12(our_table.children().get(i).child(12).text());
-
                 arrayList.add(item);
 
             }

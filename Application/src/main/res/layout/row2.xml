@@ -14,8 +14,20 @@
         android:layout_weight="1">
 
 
-        <ImageView
-            android:id="@+id/imageView"
+<!--        <ImageView-->
+
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginStart="1dp"-->
+<!--            android:layout_marginBottom="26dp"-->
+<!--            android:layout_weight="1"-->
+<!--            app:srcCompat="@drawable/ic_launcher_background" />-->
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifView"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
@@ -23,7 +35,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginBottom="26dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/coin" />
 
         <TextView
             android:id="@+id/tvData1"
@@ -32,7 +44,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="3dp"
             android:layout_toStartOf="@+id/EURO"
-            android:layout_toEndOf="@+id/imageView"
+            android:layout_toEndOf="@+id/gifView"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
@@ -126,7 +138,6 @@
             android:id="@+id/tvData3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData8"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
