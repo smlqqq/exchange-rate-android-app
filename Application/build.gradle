@@ -14,6 +14,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    namespace 'com.alex.d.myapplication'
 
     buildTypes {
         release {
@@ -35,11 +36,14 @@ android {
 
 dependencies {
 // https://mvnrepository.com/artifact/com.android.application/com.android.application.gradle.plugin
-    implementation group: 'com.android.application', name: 'com.android.application.gradle.plugin', version: '8.0.2', ext: 'pom'
+    implementation group: 'com.android.application', name: 'com.android.application.gradle.plugin', version: '8.1.0', ext: 'pom'
 
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.27'
 
     //lombok library
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
     implementation 'com.squareup.picasso:picasso:2.71828'

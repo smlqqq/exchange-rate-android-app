@@ -19,6 +19,8 @@ import androidx.annotation.Nullable;
 import java.io.File;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
     private LayoutInflater inflater;
     private List<ListItemClass> listItem;
@@ -47,7 +49,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
             convertView = inflater.inflate(R.layout.row2, null, false);
             viewHolder = new ViewHolder(convertView);
 
-            viewHolder.imageView = convertView.findViewById(R.id.imageView);
+            viewHolder.gifImageView = convertView.findViewById(R.id.gifView);
+//            viewHolder.imageView = convertView.findViewById(R.id.imageView);
             viewHolder.data1 = convertView.findViewById(R.id.tvData1);
             viewHolder.data2 = convertView.findViewById(R.id.tvData2);
             viewHolder.data3 = convertView.findViewById(R.id.tvData3);
@@ -79,7 +82,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 //        Glide.with(context).load(new File(listItemMain.getImageUrl()).getPath()).apply(options).into(viewHolder.imageView)
 //----------------------------------------------------------------------------------------------------------------------------------
 
-        viewHolder.imageView.setImageResource(images[position]);
+//        viewHolder.imageView.setImageResource(images[position]);
+        viewHolder.gifImageView.setImageResource(images[position]);
 
         viewHolder.data1.setText(listItemMain.getData1());
         viewHolder.data2.setText(listItemMain.getData2());
@@ -124,7 +128,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
     private class ViewHolder {
 
-        ImageView imageView;
+//        ImageView imageView;
+        GifImageView gifImageView;
         TextView data1;
         TextView data2;
         TextView data3;
@@ -137,7 +142,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
 
         public ViewHolder(View v) {
-            imageView = v.findViewById(R.id.imageView);
+            gifImageView = v.findViewById(R.id.gifView);
+//            imageView = v.findViewById(R.id.imageView);
             data1 = v.findViewById(R.id.tvData1);
             data2 = v.findViewById(R.id.tvData2);
             data3 = v.findViewById(R.id.tvData3);
