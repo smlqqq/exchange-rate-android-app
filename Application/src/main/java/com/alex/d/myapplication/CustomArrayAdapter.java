@@ -1,5 +1,6 @@
 package com.alex.d.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -39,6 +40,7 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
     }
 
 
+    @SuppressLint("InflateParams")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -68,19 +70,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         }
 
 
-//        Picasso.get().load(images[position].replace(" ", "%20")).resize(35,35).into(viewHolder.imageView);
-//        Glide.with(context).load(images[position]).into(viewHolder.imageView);
-
-
-//        Picasso.get().load(listItemMain.getImageUrl()).into(viewHolder.imageView);
-//        Glide.with(context).load(Uri.parse(images[position])).into(iv);
-//---------------------------------------------------------------------------------------------------------------------------------
-//        RequestOptions options = new RequestOptions()
-//                .centerCrop()
-//                .placeholder(R.drawable.nologo)
-//                .error(R.drawable.nologo);
-//        Glide.with(context).load(new File(listItemMain.getImageUrl()).getPath()).apply(options).into(viewHolder.imageView)
-//----------------------------------------------------------------------------------------------------------------------------------
 
 //        viewHolder.imageView.setImageResource(images[position]);
         viewHolder.gifImageView.setImageResource(images[position]);
@@ -95,26 +84,7 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         viewHolder.data11.setText(listItemMain.getData11());
         viewHolder.data12.setText(listItemMain.getData12());
 
-//        viewHolder.imageView.setImageURI(Uri.parse(images[position]));
 
-//        Picasso.get().load(images[position]).into(viewHolder.imageView);
-
-
-//        Picasso.get().load(images[position])
-//                .into(imageView, new com.squareup.picasso.Callback() {
-//                    @Override
-//                    public void onSuccess() {
-//                        if (progressBar != null) {
-//                            progressBar.setVisibility(View.GONE);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(Exception e) {
-//
-//                    }
-//
-//                });
 
         convertView.setOnClickListener(v -> {
             Intent openLinks = new Intent(Intent.ACTION_VIEW, Uri.parse(urls[position]));

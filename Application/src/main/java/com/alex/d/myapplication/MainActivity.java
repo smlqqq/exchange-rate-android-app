@@ -22,7 +22,6 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.victoriabank, R.drawable.mobiasbanca, R.drawable.eximbank,
             R.drawable.procredit, R.drawable.fincombank, R.drawable.energbank,
             R.drawable.bcr, R.drawable.comertbank, R.drawable.eurocreditbank,
-            R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin, R.drawable.coin,
+            R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block,
     };
 
 
