@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -17,7 +16,6 @@ import androidx.annotation.Nullable;
 
 //import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
-import java.io.File;
 import java.util.List;
 
 import pl.droidsonroids.gif.GifImageView;
@@ -53,24 +51,19 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
             viewHolder.gifImageView = convertView.findViewById(R.id.gifView);
 //            viewHolder.imageView = convertView.findViewById(R.id.imageView);
-            viewHolder.data1 = convertView.findViewById(R.id.tvData1);
-            viewHolder.data2 = convertView.findViewById(R.id.tvData2);
-            viewHolder.data3 = convertView.findViewById(R.id.tvData3);
-            viewHolder.data4 = convertView.findViewById(R.id.tvData4);
-            viewHolder.data5 = convertView.findViewById(R.id.tvData5);
-            viewHolder.data6 = convertView.findViewById(R.id.tvData6);
-            viewHolder.data7 = convertView.findViewById(R.id.tvData7);
-            viewHolder.data11 = convertView.findViewById(R.id.tvData11);
-            viewHolder.data12 = convertView.findViewById(R.id.tvData12);
-
+            viewHolder.data1 = convertView.findViewById(R.id.bankName);
+            viewHolder.data2 = convertView.findViewById(R.id.usdBuy);
+            viewHolder.data3 = convertView.findViewById(R.id.usdSell);
+            viewHolder.data4 = convertView.findViewById(R.id.euroBuy);
+            viewHolder.data5 = convertView.findViewById(R.id.euroSell);
+            viewHolder.data6 = convertView.findViewById(R.id.roLeuBuy);
+            viewHolder.data7 = convertView.findViewById(R.id.roLeuSell);
+            viewHolder.data11 = convertView.findViewById(R.id.gbpBuy);
+            viewHolder.data12 = convertView.findViewById(R.id.gbpSell);
             convertView.setTag(viewHolder);
-
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-
-
 //        viewHolder.imageView.setImageResource(images[position]);
         viewHolder.gifImageView.setImageResource(images[position]);
 
@@ -84,8 +77,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         viewHolder.data11.setText(listItemMain.getData11());
         viewHolder.data12.setText(listItemMain.getData12());
 
-
-
         convertView.setOnClickListener(v -> {
             Intent openLinks = new Intent(Intent.ACTION_VIEW, Uri.parse(urls[position]));
             context.startActivity(openLinks);
@@ -98,7 +89,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
     private class ViewHolder {
 
-//        ImageView imageView;
         GifImageView gifImageView;
         TextView data1;
         TextView data2;
@@ -113,16 +103,15 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
         public ViewHolder(View v) {
             gifImageView = v.findViewById(R.id.gifView);
-//            imageView = v.findViewById(R.id.imageView);
-            data1 = v.findViewById(R.id.tvData1);
-            data2 = v.findViewById(R.id.tvData2);
-            data3 = v.findViewById(R.id.tvData3);
-            data4 = v.findViewById(R.id.tvData4);
-            data5 = v.findViewById(R.id.tvData5);
-            data6 = v.findViewById(R.id.tvData6);
-            data7 = v.findViewById(R.id.tvData7);
-            data11 = v.findViewById(R.id.tvData11);
-            data12 = v.findViewById(R.id.tvData12);
+            data1 = v.findViewById(R.id.bankName);
+            data2 = v.findViewById(R.id.usdBuy);
+            data3 = v.findViewById(R.id.usdSell);
+            data4 = v.findViewById(R.id.euroBuy);
+            data5 = v.findViewById(R.id.euroSell);
+            data6 = v.findViewById(R.id.roLeuBuy);
+            data7 = v.findViewById(R.id.roLeuSell);
+            data11 = v.findViewById(R.id.gbpBuy);
+            data12 = v.findViewById(R.id.gbpSell);
 
 
         }

@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private CustomArrayAdapter adapter;
     private List<ListItemClass> arrayList;
+    private List<ListItemClass> usdlist;
+    private List<ListItemClass> eurlist;
+    private List<ListItemClass> leulist;
+    private List<ListItemClass> gbplist;
 
 
     String[] urls = {
@@ -104,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
     public void getInfo() {
 

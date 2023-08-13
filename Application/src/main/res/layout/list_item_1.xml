@@ -15,7 +15,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/tvData2"
+        android:id="@+id/usdBuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -23,7 +23,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/tvData3"
+        android:id="@+id/usdSell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

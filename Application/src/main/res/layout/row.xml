@@ -10,32 +10,75 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="184dp"
         android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/gbpSell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/euroSell"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0027FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/gbpBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/euroBuy"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="15dp"
+            android:layout_toStartOf="@+id/usdSell"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#F4511E"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nameOf4"
+            android:layout_width="221dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ValutaNazvanie"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="Great Britain Pound"
+            android:textColor="#090909"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/ValutaNazvanie"
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvData8"
-            android:layout_marginStart="-58dp"
-            android:layout_marginTop="-22dp"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_marginTop="-20dp"
+            android:gravity="left"
             android:text="Валюта"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:ignore="RtlCompat" />
-
+            tools:ignore="RtlCompat,RtlHardcoded" />
 
         <TextView
             android:id="@+id/tvData8"
             android:layout_width="157dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvData1"
+            android:layout_below="@id/bankName"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="1dp"
             android:layout_marginTop="0dp"
@@ -49,21 +92,22 @@
             android:textStyle="bold"
             tools:ignore="RtlCompat" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="58dp"
-            android:layout_height="35dp"
-            android:layout_weight="1"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifView"
+            android:layout_width="65dp"
+            android:layout_height="58dp"
+
+
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/tvData1"
-            android:layout_width="320dp"
-            android:layout_height="35dp"
+            android:id="@+id/bankName"
+            android:layout_width="312dp"
+            android:layout_height="58dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
-            android:layout_toEndOf="@+id/imageView"
+            android:layout_toEndOf="@+id/gifView"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
@@ -74,14 +118,14 @@
             tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/tvData2"
+            android:id="@+id/usdBuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvData8"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="14dp"
-            android:layout_toStartOf="@+id/tvData3"
+            android:layout_toStartOf="@+id/usdSell"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
@@ -90,7 +134,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvData3"
+            android:id="@+id/usdSell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvData8"
@@ -106,14 +150,14 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvData4"
+            android:id="@+id/euroBuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData2"
+            android:layout_below="@+id/usdBuy"
             android:layout_gravity="center"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="14dp"
-            android:layout_toStartOf="@+id/tvData3"
+            android:layout_toStartOf="@+id/usdSell"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
@@ -122,14 +166,14 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvData6"
+            android:id="@+id/roLeuBuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData4"
+            android:layout_below="@+id/euroBuy"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="14dp"
-            android:layout_toStartOf="@+id/tvData3"
+            android:layout_toStartOf="@+id/usdSell"
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
@@ -138,10 +182,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvData5"
+            android:id="@+id/euroSell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData3"
+            android:layout_below="@+id/usdSell"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:layout_marginTop="6dp"
@@ -154,10 +198,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvData7"
+            android:id="@+id/roLeuSell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvData5"
+            android:layout_below="@+id/euroSell"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
@@ -175,8 +219,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ValutaNazvanie"
             android:layout_marginTop="27dp"
+            android:gravity="left"
             android:text="EURO"
-            android:textAlignment="textStart"
             android:textColor="#090909"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -186,9 +230,9 @@
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ValutaNazvanie"
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="51dp"
+            android:gravity="left"
             android:text="Romanian Leu"
-            android:textAlignment="textStart"
             android:textColor="#090909"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -198,12 +242,14 @@
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ValutaNazvanie"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="3dp"
+
+            android:gravity="left"
             android:text="US Dollar"
-            android:textAlignment="textStart"
             android:textColor="#090909"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
     </RelativeLayout>
 
