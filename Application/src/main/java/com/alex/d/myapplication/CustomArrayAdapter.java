@@ -51,15 +51,15 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
             viewHolder.gifImageView = convertView.findViewById(R.id.gifView);
 //            viewHolder.imageView = convertView.findViewById(R.id.imageView);
-            viewHolder.data1 = convertView.findViewById(R.id.bankName);
-            viewHolder.data2 = convertView.findViewById(R.id.usdBuy);
-            viewHolder.data3 = convertView.findViewById(R.id.usdSell);
-            viewHolder.data4 = convertView.findViewById(R.id.euroBuy);
-            viewHolder.data5 = convertView.findViewById(R.id.euroSell);
-            viewHolder.data6 = convertView.findViewById(R.id.roLeuBuy);
-            viewHolder.data7 = convertView.findViewById(R.id.roLeuSell);
-            viewHolder.data11 = convertView.findViewById(R.id.gbpBuy);
-            viewHolder.data12 = convertView.findViewById(R.id.gbpSell);
+            viewHolder.bankName = convertView.findViewById(R.id.bankName);
+            viewHolder.usdB = convertView.findViewById(R.id.usdBuy);
+            viewHolder.usdS = convertView.findViewById(R.id.usdSell);
+            viewHolder.euroB = convertView.findViewById(R.id.euroBuy);
+            viewHolder.euroS = convertView.findViewById(R.id.euroSell);
+            viewHolder.roLeuB = convertView.findViewById(R.id.roLeuBuy);
+            viewHolder.roLeuS = convertView.findViewById(R.id.roLeuSell);
+            viewHolder.gbpB = convertView.findViewById(R.id.gbpBuy);
+            viewHolder.gbpS = convertView.findViewById(R.id.gbpSell);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -67,15 +67,15 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 //        viewHolder.imageView.setImageResource(images[position]);
         viewHolder.gifImageView.setImageResource(images[position]);
 
-        viewHolder.data1.setText(listItemMain.getData1());
-        viewHolder.data2.setText(listItemMain.getData2());
-        viewHolder.data3.setText(listItemMain.getData3());
-        viewHolder.data4.setText(listItemMain.getData4());
-        viewHolder.data5.setText(listItemMain.getData5());
-        viewHolder.data6.setText(listItemMain.getData6());
-        viewHolder.data7.setText(listItemMain.getData7());
-        viewHolder.data11.setText(listItemMain.getData11());
-        viewHolder.data12.setText(listItemMain.getData12());
+        viewHolder.bankName.setText(listItemMain.getBank());
+        viewHolder.usdB.setText(listItemMain.getUsdB());
+        viewHolder.usdS.setText(listItemMain.getUsdS());
+        viewHolder.euroB.setText(listItemMain.getEuroB());
+        viewHolder.euroS.setText(listItemMain.getEuroS());
+        viewHolder.roLeuB.setText(listItemMain.getRoLeuB());
+        viewHolder.roLeuS.setText(listItemMain.getRoLeuS());
+        viewHolder.gbpB.setText(listItemMain.getGbpB());
+        viewHolder.gbpS.setText(listItemMain.getGbpS());
 
         convertView.setOnClickListener(v -> {
             Intent openLinks = new Intent(Intent.ACTION_VIEW, Uri.parse(urls[position]));
@@ -90,28 +90,28 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
     private class ViewHolder {
 
         GifImageView gifImageView;
-        TextView data1;
-        TextView data2;
-        TextView data3;
-        TextView data4;
-        TextView data5;
-        TextView data6;
-        TextView data7;
-        TextView data11;
-        TextView data12;
+        TextView bankName;
+        TextView usdB;
+        TextView usdS;
+        TextView euroB;
+        TextView euroS;
+        TextView roLeuB;
+        TextView roLeuS;
+        TextView gbpB;
+        TextView gbpS;
 
 
         public ViewHolder(View v) {
             gifImageView = v.findViewById(R.id.gifView);
-            data1 = v.findViewById(R.id.bankName);
-            data2 = v.findViewById(R.id.usdBuy);
-            data3 = v.findViewById(R.id.usdSell);
-            data4 = v.findViewById(R.id.euroBuy);
-            data5 = v.findViewById(R.id.euroSell);
-            data6 = v.findViewById(R.id.roLeuBuy);
-            data7 = v.findViewById(R.id.roLeuSell);
-            data11 = v.findViewById(R.id.gbpBuy);
-            data12 = v.findViewById(R.id.gbpSell);
+            bankName = v.findViewById(R.id.bankName);
+            usdB = v.findViewById(R.id.usdBuy);
+            usdS = v.findViewById(R.id.usdSell);
+            euroB = v.findViewById(R.id.euroBuy);
+            euroS = v.findViewById(R.id.euroSell);
+            roLeuB = v.findViewById(R.id.roLeuBuy);
+            roLeuS = v.findViewById(R.id.roLeuSell);
+            gbpB = v.findViewById(R.id.gbpBuy);
+            gbpS = v.findViewById(R.id.gbpSell);
 
 
         }

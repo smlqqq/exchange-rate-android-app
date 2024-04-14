@@ -3,16 +3,9 @@ package com.alex.d.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-
-import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -143,15 +136,15 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < 21; i++) {
 
                 ListItemClass item = new ListItemClass();
-                item.setData1(our_table.children().get(i).child(0).text());
-                item.setData2(our_table.children().get(i).child(1).text());
-                item.setData3(our_table.children().get(i).child(2).text());
-                item.setData4(our_table.children().get(i).child(3).text());
-                item.setData5(our_table.children().get(i).child(4).text());
-                item.setData6(our_table.children().get(i).child(7).text());
-                item.setData7(our_table.children().get(i).child(8).text());
-                item.setData11(our_table.children().get(i).child(11).text());
-                item.setData12(our_table.children().get(i).child(12).text());
+                item.setBank(our_table.children().get(i).child(0).text());
+                item.setUsdB(our_table.children().get(i).child(1).text());
+                item.setUsdS(our_table.children().get(i).child(2).text());
+                item.setEuroB(our_table.children().get(i).child(3).text());
+                item.setEuroS(our_table.children().get(i).child(4).text());
+                item.setRoLeuB(our_table.children().get(i).child(7).text());
+                item.setRoLeuS(our_table.children().get(i).child(8).text());
+                item.setGbpB(our_table.children().get(i).child(11).text());
+                item.setGbpS(our_table.children().get(i).child(12).text());
                 arrayList.add(item);
 
             }
