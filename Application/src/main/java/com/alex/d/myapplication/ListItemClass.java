@@ -15,20 +15,17 @@ public class ListItemClass {
     private String gbpS;
     private String imageUrl;
 
-    public ListItemClass() {
+    private String date;
+
+    public String getDate() {
+        return date;
     }
 
-    public ListItemClass(String bank, String usdB, String usdS, String euroB, String euroS, String roLeuB, String roLeuS, String gbpB, String gbpS, String imageUrl) {
-        this.bank = bank;
-        this.usdB = usdB;
-        this.usdS = usdS;
-        this.euroB = euroB;
-        this.euroS = euroS;
-        this.roLeuB = roLeuB;
-        this.roLeuS = roLeuS;
-        this.gbpB = gbpB;
-        this.gbpS = gbpS;
-        this.imageUrl = imageUrl;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public ListItemClass() {
     }
 
     public String getBank() {
