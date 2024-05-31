@@ -2,13 +2,19 @@ package com.alex.d.myapplication;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.google.android.material.snackbar.Snackbar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private FrameLayout errorOverlay;
     private ListView listView;
     private CustomArrayAdapter adapter;
     private List<ListItemClass> arrayList;
@@ -91,9 +97,38 @@ String[] urls = {
             @Override
             public void onFailure(Call<ExchangeRatesResponse> call, Throwable t) {
                 t.printStackTrace();
-                // Handle failure
+                Log.e("Retrofit", "Failed to fetch exchange rates: " + t.getMessage());
+                showErrorOverlay();
             }
         });
     }
-}
 
+    private void showErrorOverlay() {
+        if (errorOverlay == null) {
+            errorOverlay = new FrameLayout(this);
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.MATCH_PARENT
+            );
+            errorOverlay.setLayoutParams(params);
+
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View overlayView = inflater.inflate(R.layout.overlay_error_layout, errorOverlay, false);
+
+            ImageView imageView = overlayView.findViewById(R.id.image);
+            TextView textView = overlayView.findViewById(R.id.text);
+            imageView.setImageResource(R.drawable.ic_error); // Поломка иконка
+            textView.setText("Невозможно получить данные, обратитесь к администратору");
+
+            errorOverlay.addView(overlayView);
+            addContentView(errorOverlay, params);
+        }
+        errorOverlay.setVisibility(View.VISIBLE);
+    }
+
+    private void hideErrorOverlay() {
+        if (errorOverlay != null) {
+            errorOverlay.setVisibility(View.GONE);
+        }
+    }
+}
