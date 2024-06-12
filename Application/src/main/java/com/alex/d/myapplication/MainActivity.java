@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private CustomArrayAdapter adapter;
     private List<ListItemClass> arrayList;
+    private ExchangeRatesApi api;
 
 String[] urls = {
         "https://www.bnm.md/",
@@ -59,7 +61,6 @@ String[] urls = {
             R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block,
     };
 
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +74,16 @@ String[] urls = {
 
         // Retrofit setup
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.100.5:8080") // Base URL
+                .baseUrl("http://10.0.2.2:9099/") // Base URL with trailing slash
                 .addConverterFactory(GsonConverterFactory.create()) // JSON converter
                 .build();
 
-        // Create API instance
-        ExchangeRatesApi api = retrofit.create(ExchangeRatesApi.class);
+        api = retrofit.create(ExchangeRatesApi.class);
 
-        // Make network call asynchronously
+        fetchData();
+    }
+
+    private void fetchData() {
         api.getExchangeRates().enqueue(new Callback<ExchangeRatesResponse>() {
             @Override
             public void onResponse(Call<ExchangeRatesResponse> call, Response<ExchangeRatesResponse> response) {
@@ -89,8 +92,10 @@ String[] urls = {
                     arrayList.clear();
                     arrayList.addAll(exchangeRates);
                     adapter.notifyDataSetChanged();
+                    hideErrorOverlay();
                 } else {
                     // Handle error
+                    showErrorOverlay();
                 }
             }
 
@@ -117,8 +122,15 @@ String[] urls = {
 
             ImageView imageView = overlayView.findViewById(R.id.image);
             TextView textView = overlayView.findViewById(R.id.text);
-            imageView.setImageResource(R.drawable.ic_error); // Поломка иконка
+            Button refreshButton = overlayView.findViewById(R.id.refresh_button);
+
+            imageView.setImageResource(R.drawable.ic_error);
             textView.setText("Невозможно получить данные, обратитесь к администратору");
+
+            refreshButton.setOnClickListener(v -> {
+                errorOverlay.setVisibility(View.GONE);
+                fetchData();
+            });
 
             errorOverlay.addView(overlayView);
             addContentView(errorOverlay, params);
