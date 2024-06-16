@@ -60,6 +60,8 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
             viewHolder.roLeuS = convertView.findViewById(R.id.roLeuSell);
             viewHolder.gbpB = convertView.findViewById(R.id.gbpBuy);
             viewHolder.gbpS = convertView.findViewById(R.id.gbpSell);
+            viewHolder.timeStamp = convertView.findViewById(R.id.timeStamp);
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -99,6 +101,7 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         TextView roLeuS;
         TextView gbpB;
         TextView gbpS;
+        TextView timeStamp;
 
 
         public ViewHolder(View v) {
@@ -112,6 +115,7 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
             roLeuS = v.findViewById(R.id.roLeuSell);
             gbpB = v.findViewById(R.id.gbpBuy);
             gbpS = v.findViewById(R.id.gbpSell);
+            timeStamp = v.findViewById(R.id.timeStamp);
 
 
         }

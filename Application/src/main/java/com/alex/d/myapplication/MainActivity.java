@@ -66,6 +66,7 @@ String[] urls = {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
 
         listView = findViewById(R.id.listView);
         arrayList = new ArrayList<>();
@@ -89,19 +90,24 @@ String[] urls = {
             public void onResponse(Call<ExchangeRatesResponse> call, Response<ExchangeRatesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<ListItemClass> exchangeRates = response.body().getExchangeRates();
+                    String timestamp = response.body().getTimestamp();
+
+                    // Находим TextView для временной метки
+                    TextView timeStampTextView = findViewById(R.id.timeStamp);
+                    // Устанавливаем текст временной метки
+                    timeStampTextView.setText(timestamp);
+
                     arrayList.clear();
                     arrayList.addAll(exchangeRates);
                     adapter.notifyDataSetChanged();
                     hideErrorOverlay();
                 } else {
-                    // Handle error
                     showErrorOverlay();
                 }
             }
 
             @Override
             public void onFailure(Call<ExchangeRatesResponse> call, Throwable t) {
-                t.printStackTrace();
                 Log.e("Retrofit", "Failed to fetch exchange rates: " + t.getMessage());
                 showErrorOverlay();
             }

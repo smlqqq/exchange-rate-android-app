@@ -15,14 +15,14 @@ public class ListItemClass {
     private String gbpS;
     private String imageUrl;
 
-    private String date;
+    private String timestamp;
 
-    public String getDate() {
-        return date;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public ListItemClass() {
