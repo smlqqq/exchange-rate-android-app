@@ -17,4 +17,5 @@ public class ExchangeRatesResponse {
     public String getTimestamp() {
         return timestamp;
     }
+
 }
