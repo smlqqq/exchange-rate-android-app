@@ -1,160 +1,128 @@
 package com.alex.d.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import com.alex.d.myapplication.model.BankInfo;
+import com.google.android.material.snackbar.Snackbar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-    private Document doc;
+
+public class MainActivity extends AppCompatActivity {
+    private FrameLayout errorOverlay;
     private ListView listView;
     private CustomArrayAdapter adapter;
     private List<ListItemClass> arrayList;
-
-
-    String[] urls = {
-//            "https://valutar.md/ru/banks/banca-nationala",
-//            "https://valutar.md/ru/banks/moldova-agroindbank",
-//            "https://valutar.md/ru/banks/moldindconbank",
-//            "https://valutar.md/ru/banks/victoriabank",
-//            "https://valutar.md/ru/banks/mobiasbanca",
-//            "https://valutar.md/ru/banks/eximbank",
-//            "https://valutar.md/ru/banks/procredit-bank",
-//            "https://valutar.md/ru/banks/fincombank",
-//            "https://valutar.md/ru/banks/energbank",
-//            "https://valutar.md/ru/banks/bcr-chisinau",
-//            "https://valutar.md/ru/banks/comertbank",
-//            "https://valutar.md/ru/banks/eurocreditbank",
-//            "https://valutar.md/ru/exchange-offices/deghest-csv",
-//            "https://valutar.md/ru/exchange-offices/clio-csv",
-//            "https://valutar.md/ru/exchange-offices/orion-csv",
-//            "https://valutar.md/ru/exchange-offices/profx-schimb-csv",
-//            "https://valutar.md/ru/exchange-offices/ciocana-csv",
-//            "https://valutar.md/ru/exchange-offices/calisto-ng-csv",
-//            "https://valutar.md/ru/exchange-offices/nelus-grup-csv",
-//            "https://valutar.md/ru/exchange-offices/protanir-csv",
-//            "https://valutar.md/ru/exchange-offices/vadisan-csv"
-
-            "https://www.bnm.md/",
-            "https://www.maib.md/ro",
-            "https://www.micb.md/",
-            "https://www.victoriabank.md/ru/",
-            "https://www.mobiasbanca.md/",
-            "https://eximbank.md/ro",
-            "https://www.procreditbank.md/",
-            "https://fincombank.com/",
-            "https://www.energbank.com",
-            "https://www.bcr.md/",
-            "https://comertbank.md/",
-            "https://www.ecb.md/",
-            "https://valutar.md/ru/exchange-offices/deghest-csv",
-            "https://valutar.md/ru/exchange-offices/clio-csv",
-            "https://valutar.md/ru/exchange-offices/orion-csv",
-            "https://valutar.md/ru/exchange-offices/profx-schimb-csv",
-            "https://valutar.md/ru/exchange-offices/ciocana-csv",
-            "https://valutar.md/ru/exchange-offices/calisto-ng-csv",
-            "https://valutar.md/ru/exchange-offices/nelus-grup-csv",
-            "https://valutar.md/ru/exchange-offices/protanir-csv",
-            "https://valutar.md/ru/exchange-offices/vadisan-csv"
-    };
-
-
-//    String[] images = {
-//            "https://www.valutar.md/assets/7dcc2c93/img/banks/icons/banca-nationala.png",
-//            "https://www.valutar.md/ru/banks/moldova-agroindbank",
-//            "https://www.valutar.md/ru/banks/moldindconbank"
-//    };
-
-    int[] img = {R.drawable.nationala, R.drawable.agroindbank, R.drawable.moldindconbank,
-            R.drawable.victoriabank, R.drawable.mobiasbanca, R.drawable.eximbank,
-            R.drawable.procredit, R.drawable.fincombank, R.drawable.energbank,
-            R.drawable.bcr, R.drawable.comertbank, R.drawable.eurocreditbank,
-            R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo, R.drawable.nologo,
-    };
+    private ExchangeRatesApi api;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         setContentView(R.layout.main);
-        getInfo();
-
-    }
-
-
-    public void getInfo() {
-
 
         listView = findViewById(R.id.listView);
-//        imageView = findViewById(R.id.imageView);
         arrayList = new ArrayList<>();
-//        adapter = new CustomArrayAdapter(this, R.layout.row, arrayList, getLayoutInflater(), urls, images);
-        adapter = new CustomArrayAdapter(this, R.layout.row2, arrayList, getLayoutInflater(), urls, img);
+
+        List<BankInfo> bankInfoList = Arrays.asList(BankInfo.values());
+
+
+        adapter = new CustomArrayAdapter(this, R.layout.row2, getLayoutInflater(), bankInfoList, arrayList);
         listView.setAdapter(adapter);
 
+        // Retrofit setup
+        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("http://10.0.2.2:9099/") // Base URL with trailing slash
+                .baseUrl("https://exchange-rate-data-parser.onrender.com") // Base URL with trailing slash
+                .addConverterFactory(GsonConverterFactory.create()) // JSON converter
+                .build();
 
-        new Thread(() -> {
+        api = retrofit.create(ExchangeRatesApi.class);
 
-            try {
-                getWeb();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
-
+        fetchData();
     }
 
-    @SuppressLint("SetTextI18n")
-    public void getWeb() {
+    private void fetchData() {
+        api.getExchangeRates().enqueue(new Callback<ExchangeRatesResponse>() {
+            @Override
+            public void onResponse(Call<ExchangeRatesResponse> call, Response<ExchangeRatesResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<ListItemClass> exchangeRates = response.body().getExchangeRates();
+                    String timestamp = response.body().getTimestamp();
 
-        try {
+                    TextView timeStampTextView = findViewById(R.id.timeStamp);
+                    timeStampTextView.setText(timestamp);
 
-            doc = Jsoup.connect("https://valutar.md/ru").get();
-            Elements tbody = doc.getElementsByTag("tbody");
-            Element our_table = tbody.get(0);
-
-
-//            for (int i = 0; i < our_table.childrenSize(); i++) {
-            for (int i = 0; i < 21; i++) {
-
-                ListItemClass item = new ListItemClass();
-                item.setData1(our_table.children().get(i).child(0).text());
-                item.setData2(our_table.children().get(i).child(1).text());
-                item.setData3(our_table.children().get(i).child(2).text());
-                item.setData4(our_table.children().get(i).child(3).text());
-                item.setData5(our_table.children().get(i).child(4).text());
-                item.setData6(our_table.children().get(i).child(7).text());
-                item.setData7(our_table.children().get(i).child(8).text());
-                item.setData11(our_table.children().get(i).child(11).text());
-                item.setData12(our_table.children().get(i).child(12).text());
-
-                arrayList.add(item);
-
+                    arrayList.clear();
+                    arrayList.addAll(exchangeRates);
+                    adapter.notifyDataSetChanged();
+                    hideErrorOverlay();
+                } else {
+                    showErrorOverlay();
+                }
             }
 
-            runOnUiThread(() -> adapter.notifyDataSetChanged());
+            @Override
+            public void onFailure(Call<ExchangeRatesResponse> call, Throwable t) {
+                Log.e("Retrofit", "Failed to fetch exchange rates: " + t.getMessage());
+                showErrorOverlay();
+            }
+        });
+    }
 
-        } catch (Exception e) {
+    private void showErrorOverlay() {
+        if (errorOverlay == null) {
+            errorOverlay = new FrameLayout(this);
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.MATCH_PARENT
+            );
+            errorOverlay.setLayoutParams(params);
 
-            e.printStackTrace();
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View overlayView = inflater.inflate(R.layout.overlay_error_layout, errorOverlay, false);
 
+            ImageView imageView = overlayView.findViewById(R.id.image);
+            TextView textView = overlayView.findViewById(R.id.text);
+            Button refreshButton = overlayView.findViewById(R.id.refresh_button);
+
+            imageView.setImageResource(R.drawable.ic_error);
+            textView.setText("Невозможно получить данные.");
+
+            refreshButton.setOnClickListener(v -> {
+                errorOverlay.setVisibility(View.GONE);
+                fetchData();
+            });
+
+            errorOverlay.addView(overlayView);
+            addContentView(errorOverlay, params);
+        }
+        errorOverlay.setVisibility(View.VISIBLE);
+    }
+
+    private void hideErrorOverlay() {
+        if (errorOverlay != null) {
+            errorOverlay.setVisibility(View.GONE);
         }
     }
 }
