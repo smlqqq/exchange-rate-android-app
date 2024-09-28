@@ -14,7 +14,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.alex.d.myapplication.model.BankInfo;
 import com.google.android.material.snackbar.Snackbar;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,36 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private List<ListItemClass> arrayList;
     private ExchangeRatesApi api;
 
-String[] urls = {
-        "https://www.bnm.md/",
-        "https://www.maib.md/ro",
-        "https://www.micb.md/",
-        "https://www.victoriabank.md/ru/",
-        "https://www.mobiasbanca.md/",
-        "https://eximbank.md/ro",
-        "https://www.procreditbank.md/",
-        "https://fincombank.com/",
-        "https://www.energbank.com",
-        "https://www.bcr.md/",
-        "https://comertbank.md/",
-        "https://www.ecb.md/",
-        "https://valutar.md/ru/exchange-offices/deghest-csv",
-        "https://valutar.md/ru/exchange-offices/clio-csv",
-        "https://valutar.md/ru/exchange-offices/orion-csv",
-        "https://valutar.md/ru/exchange-offices/profx-schimb-csv",
-        "https://valutar.md/ru/exchange-offices/ciocana-csv",
-        "https://valutar.md/ru/exchange-offices/calisto-ng-csv",
-        "https://valutar.md/ru/exchange-offices/nelus-grup-csv",
-        "https://valutar.md/ru/exchange-offices/protanir-csv",
-        "https://valutar.md/ru/exchange-offices/vadisan-csv"
-};
-
-    int[] img = {R.drawable.nationala, R.drawable.agroindbank, R.drawable.moldindconbank,
-            R.drawable.victoriabank, R.drawable.mobiasbanca, R.drawable.eximbank,
-            R.drawable.procredit, R.drawable.fincombank, R.drawable.energbank,
-            R.drawable.bcr, R.drawable.comertbank, R.drawable.eurocreditbank,
-            R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block, R.drawable.block,
-    };
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -70,12 +43,17 @@ String[] urls = {
 
         listView = findViewById(R.id.listView);
         arrayList = new ArrayList<>();
-        adapter = new CustomArrayAdapter(this, R.layout.row2, arrayList, getLayoutInflater(), urls, img);
+
+        List<BankInfo> bankInfoList = Arrays.asList(BankInfo.values());
+
+
+        adapter = new CustomArrayAdapter(this, R.layout.row2, getLayoutInflater(), bankInfoList, arrayList);
         listView.setAdapter(adapter);
 
         // Retrofit setup
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:9099/") // Base URL with trailing slash
+//                .baseUrl("http://10.0.2.2:9099/") // Base URL with trailing slash
+                .baseUrl("https://exchange-rate-data-parser.onrender.com") // Base URL with trailing slash
                 .addConverterFactory(GsonConverterFactory.create()) // JSON converter
                 .build();
 
@@ -92,9 +70,7 @@ String[] urls = {
                     List<ListItemClass> exchangeRates = response.body().getExchangeRates();
                     String timestamp = response.body().getTimestamp();
 
-                    // Находим TextView для временной метки
                     TextView timeStampTextView = findViewById(R.id.timeStamp);
-                    // Устанавливаем текст временной метки
                     timeStampTextView.setText(timestamp);
 
                     arrayList.clear();
@@ -131,7 +107,7 @@ String[] urls = {
             Button refreshButton = overlayView.findViewById(R.id.refresh_button);
 
             imageView.setImageResource(R.drawable.ic_error);
-            textView.setText("Невозможно получить данные, обратитесь к администратору");
+            textView.setText("Невозможно получить данные.");
 
             refreshButton.setOnClickListener(v -> {
                 errorOverlay.setVisibility(View.GONE);

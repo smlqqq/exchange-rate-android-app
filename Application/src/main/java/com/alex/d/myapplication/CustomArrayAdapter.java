@@ -10,11 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-//import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+import com.alex.d.myapplication.model.BankInfo;
 
 import java.util.List;
 
@@ -24,19 +23,15 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
     private LayoutInflater inflater;
     private List<ListItemClass> listItem;
     private Context context;
-    private String[] urls;
-    //    private String[] images;
-    private int[] images;
+    private List<BankInfo> bankInfoList;
 
-    public CustomArrayAdapter(@NonNull Context context, int resource, List<ListItemClass> listItem, LayoutInflater inflater, String[] urls, int[] images) {
+    public CustomArrayAdapter(@NonNull Context context, int resource, LayoutInflater inflater, List<BankInfo> bankInfoList, List<ListItemClass> listItem) {
         super(context, resource, listItem);
         this.inflater = inflater;
         this.listItem = listItem;
         this.context = context;
-        this.urls = urls;
-        this.images = images;
+        this.bankInfoList = bankInfoList;
     }
-
 
     @SuppressLint("InflateParams")
     @NonNull
@@ -48,27 +43,13 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.row2, null, false);
             viewHolder = new ViewHolder(convertView);
-
-            viewHolder.gifImageView = convertView.findViewById(R.id.gifView);
-//            viewHolder.imageView = convertView.findViewById(R.id.imageView);
-            viewHolder.bankName = convertView.findViewById(R.id.bankName);
-            viewHolder.usdB = convertView.findViewById(R.id.usdBuy);
-            viewHolder.usdS = convertView.findViewById(R.id.usdSell);
-            viewHolder.euroB = convertView.findViewById(R.id.euroBuy);
-            viewHolder.euroS = convertView.findViewById(R.id.euroSell);
-            viewHolder.roLeuB = convertView.findViewById(R.id.roLeuBuy);
-            viewHolder.roLeuS = convertView.findViewById(R.id.roLeuSell);
-            viewHolder.gbpB = convertView.findViewById(R.id.gbpBuy);
-            viewHolder.gbpS = convertView.findViewById(R.id.gbpSell);
-            viewHolder.timeStamp = convertView.findViewById(R.id.timeStamp);
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-//        viewHolder.imageView.setImageResource(images[position]);
-        viewHolder.gifImageView.setImageResource(images[position]);
 
+        // Устанавливаем изображение и текст
+        viewHolder.gifImageView.setImageResource(bankInfoList.get(position).getImageResId());
         viewHolder.bankName.setText(listItemMain.getBank());
         viewHolder.usdB.setText(listItemMain.getUsdB());
         viewHolder.usdS.setText(listItemMain.getUsdS());
@@ -79,18 +60,16 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         viewHolder.gbpB.setText(listItemMain.getGbpB());
         viewHolder.gbpS.setText(listItemMain.getGbpS());
 
+        // Открываем URL при нажатии
         convertView.setOnClickListener(v -> {
-            Intent openLinks = new Intent(Intent.ACTION_VIEW, Uri.parse(urls[position]));
+            Intent openLinks = new Intent(Intent.ACTION_VIEW, Uri.parse(bankInfoList.get(position).getUrl()));
             context.startActivity(openLinks);
         });
-
 
         return convertView;
     }
 
-
-    private class ViewHolder {
-
+    private static class ViewHolder {
         GifImageView gifImageView;
         TextView bankName;
         TextView usdB;
@@ -103,7 +82,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         TextView gbpS;
         TextView timeStamp;
 
-
         public ViewHolder(View v) {
             gifImageView = v.findViewById(R.id.gifView);
             bankName = v.findViewById(R.id.bankName);
@@ -115,11 +93,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
             roLeuS = v.findViewById(R.id.roLeuSell);
             gbpB = v.findViewById(R.id.gbpBuy);
             gbpS = v.findViewById(R.id.gbpSell);
-            timeStamp = v.findViewById(R.id.timeStamp);
-
-
         }
-
-
     }
 }
