@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Brand -->
+    <color name="primary">#2F6FED</color>
+    <color name="primary_dark">#1D4FBF</color>
+    <color name="primary_light">#EAF0FE</color>
+
+    <!-- Surfaces -->
+    <color name="background">#F5F6FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="divider">#EAEAEE</color>
+
+    <!-- Text -->
+    <color name="text_primary">#1C1E21</color>
+    <color name="text_secondary">#8A8D93</color>
+
+    <!-- Semantic: buy / sell -->
+    <color name="buy_color">#1DA25A</color>
+    <color name="sell_color">#E24C4B</color>
+
+    <color name="ripple">#1F2F6FED</color>
+
+    <!-- kept for backwards compatibility with anything still referencing these -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
