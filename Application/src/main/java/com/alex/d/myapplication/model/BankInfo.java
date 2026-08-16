@@ -15,7 +15,7 @@ public enum BankInfo {
     BCR("BCR", "https://www.bcr.md/", R.drawable.bcr),
     COMERTBANK("Comerțbank", "https://comertbank.md/", R.drawable.comertbank),
     EUROCREDITBANK("EuroCreditBank", "https://www.ecb.md/", R.drawable.eurocreditbank),
-    OTP_BANK("OTP Bank", "https://www.otpbank.md/", R.drawable.block), // TODO: add a real otp icon drawable
+    OTP_BANK("OTP Bank", "https://www.otpbank.md/", R.drawable.otpbank),
     DEGHEST("Deghest", "https://valutar.md/ru/exchange-offices/deghest-csv", R.drawable.block),
     CLIO("Clio", "https://valutar.md/ru/exchange-offices/clio-csv", R.drawable.block),
     ORION("Orion", "https://valutar.md/ru/exchange-offices/orion-csv", R.drawable.block),
