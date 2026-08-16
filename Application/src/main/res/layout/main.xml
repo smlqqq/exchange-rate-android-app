@@ -48,11 +48,10 @@
 
 
     <TextView
-        android:id="@+id/timeStamp"
         android:layout_width="166dp"
         android:layout_height="23dp"
         android:layout_marginTop="12dp"
-        android:text="2024-06-16 17:17:15"
+        android:text="null"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#040404"

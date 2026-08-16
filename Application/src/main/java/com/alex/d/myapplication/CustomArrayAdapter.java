@@ -15,22 +15,36 @@ import androidx.annotation.Nullable;
 
 import com.alex.d.myapplication.model.BankInfo;
 
+import java.text.Normalizer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import pl.droidsonroids.gif.GifImageView;
 
 public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
-    private LayoutInflater inflater;
     private List<ListItemClass> listItem;
     private Context context;
-    private List<BankInfo> bankInfoList;
+    private final Map<String, BankInfo> bankInfoByName = new HashMap<>();
 
-    public CustomArrayAdapter(@NonNull Context context, int resource, LayoutInflater inflater, List<BankInfo> bankInfoList, List<ListItemClass> listItem) {
+    public CustomArrayAdapter(@NonNull Context context, int resource, LayoutInflater layoutInflater, List<BankInfo> bankInfoList, List<ListItemClass> listItem) {
         super(context, resource, listItem);
-        this.inflater = inflater;
-        this.listItem = listItem;
         this.context = context;
-        this.bankInfoList = bankInfoList;
+        this.listItem = listItem;
+
+        for (BankInfo info : bankInfoList) {
+            bankInfoByName.put(normalize(info.getMatchKey()), info);
+        }
+    }
+
+    // strips diacritics, lowercases, drops non-alphanumerics so
+    // "Comerțbank", "comertbank", "Comerțbank " all match the same key
+    private static String normalize(String s) {
+        if (s == null) return "";
+        String decomposed = Normalizer.normalize(s, Normalizer.Form.NFD);
+        String stripped = decomposed.replaceAll("\\p{M}", "");
+        return stripped.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
     }
 
     @SuppressLint("InflateParams")
@@ -40,7 +54,10 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         ViewHolder viewHolder;
 
         ListItemClass listItemMain = listItem.get(position);
+        BankInfo bankInfo = bankInfoByName.get(normalize(listItemMain.getBank()));
+
         if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.row2, null, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
@@ -48,8 +65,13 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        // Устанавливаем изображение и текст
-        viewHolder.gifImageView.setImageResource(bankInfoList.get(position).getImageResId());
+        if (bankInfo != null) {
+            viewHolder.gifImageView.setImageResource(bankInfo.getImageResId());
+        } else {
+            // unknown/new bank name from backend — don't crash, just show a placeholder
+            viewHolder.gifImageView.setImageResource(R.drawable.block);
+        }
+
         viewHolder.bankName.setText(listItemMain.getBank());
         viewHolder.usdB.setText(listItemMain.getUsdB());
         viewHolder.usdS.setText(listItemMain.getUsdS());
@@ -60,10 +82,12 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         viewHolder.gbpB.setText(listItemMain.getGbpB());
         viewHolder.gbpS.setText(listItemMain.getGbpS());
 
-        // Открываем URL при нажатии
+        final String url = bankInfo != null ? bankInfo.getUrl() : null;
         convertView.setOnClickListener(v -> {
-            Intent openLinks = new Intent(Intent.ACTION_VIEW, Uri.parse(bankInfoList.get(position).getUrl()));
-            context.startActivity(openLinks);
+            if (url != null && !url.isEmpty()) {
+                Intent openLinks = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(openLinks);
+            }
         });
 
         return convertView;
@@ -80,7 +104,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         TextView roLeuS;
         TextView gbpB;
         TextView gbpS;
-        TextView timeStamp;
 
         public ViewHolder(View v) {
             gifImageView = v.findViewById(R.id.gifView);

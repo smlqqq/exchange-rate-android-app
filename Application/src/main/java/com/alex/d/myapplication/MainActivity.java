@@ -63,18 +63,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        api.getExchangeRates().enqueue(new Callback<ExchangeRatesResponse>() {
+        api.getExchangeRates().enqueue(new Callback<List<ListItemClass>>() {
             @Override
-            public void onResponse(Call<ExchangeRatesResponse> call, Response<ExchangeRatesResponse> response) {
+            public void onResponse(Call<List<ListItemClass>> call, Response<List<ListItemClass>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<ListItemClass> exchangeRates = response.body().getExchangeRates();
-                    String timestamp = response.body().getTimestamp();
-
-                    TextView timeStampTextView = findViewById(R.id.timeStamp);
-                    timeStampTextView.setText(timestamp);
-
                     arrayList.clear();
-                    arrayList.addAll(exchangeRates);
+                    arrayList.addAll(response.body());
                     adapter.notifyDataSetChanged();
                     hideErrorOverlay();
                 } else {
@@ -83,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ExchangeRatesResponse> call, Throwable t) {
+            public void onFailure(Call<List<ListItemClass>> call, Throwable t) {
                 Log.e("Retrofit", "Failed to fetch exchange rates: " + t.getMessage());
                 showErrorOverlay();
             }
