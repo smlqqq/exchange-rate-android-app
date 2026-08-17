@@ -11,8 +11,12 @@
         <item name="colorOnSecondary">@color/on_primary</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/surface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="actionMenuTextColor">@color/text_primary</item>
+        <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
 
         <!-- Background and surface colors -->
         <item name="android:windowBackground">@color/background</item>

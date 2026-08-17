@@ -84,6 +84,11 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
         private final CurrencyRow ronRow;
         private final CurrencyRow gbpRow;
 
+        private final View containerUsd;
+        private final View containerEuro;
+        private final View containerRon;
+        private final View containerGbp;
+
         BankViewHolder(@NonNull View itemView) {
             super(itemView);
             logo = itemView.findViewById(R.id.bankLogo);
@@ -92,6 +97,11 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
             euroRow = new CurrencyRow(itemView.findViewById(R.id.rowEuro), "EUR");
             ronRow = new CurrencyRow(itemView.findViewById(R.id.rowRon), "RON");
             gbpRow = new CurrencyRow(itemView.findViewById(R.id.rowGbp), "GBP");
+
+            containerUsd = itemView.findViewById(R.id.containerUsd);
+            containerEuro = itemView.findViewById(R.id.containerEuro);
+            containerRon = itemView.findViewById(R.id.containerRon);
+            containerGbp = itemView.findViewById(R.id.containerGbp);
         }
 
         void bind(ListItemClass item, BankInfo info, Context context) {
@@ -103,11 +113,31 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
             ronRow.bind(item.getRoLeuB(), item.getRoLeuS());
             gbpRow.bind(item.getGbpB(), item.getGbpS());
 
+            setupClick(containerUsd, item, "USD", context);
+            setupClick(containerEuro, item, "EUR", context);
+            setupClick(containerRon, item, "RON", context);
+            setupClick(containerGbp, item, "GBP", context);
+
+            // Restore navigation to bank website on header click
             final String url = info != null ? info.getUrl() : null;
-            itemView.setOnClickListener(v -> {
-                if (url != null && !url.isEmpty()) {
-                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                }
+            View header = itemView.findViewById(R.id.bankHeader);
+            if (header != null) {
+                header.setOnClickListener(v -> {
+                    if (url != null && !url.isEmpty()) {
+                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                    }
+                });
+            }
+        }
+
+        private void setupClick(View view, ListItemClass item, String currency, Context context) {
+            view.setOnClickListener(v -> {
+                // Here we would open the specific currency view.
+                // For now, let's open Calculator with that currency selected.
+                Intent intent = new Intent(context, CalculatorActivity.class);
+                intent.putExtra("BANK_NAME", item.getBank());
+                intent.putExtra("CURRENCY", currency);
+                context.startActivity(intent);
             });
         }
     }

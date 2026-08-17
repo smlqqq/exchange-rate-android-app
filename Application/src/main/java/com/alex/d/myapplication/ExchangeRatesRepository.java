@@ -42,6 +42,10 @@ public class ExchangeRatesRepository {
         return items;
     }
 
+    public void clearTempData() {
+        // Implementation for clearing non-essential data to save memory
+    }
+
     /** Writes the current in-memory list to disk. Call this after a successful scrape. */
     public void persist(Context context) {
         SharedPreferences prefs = context.getApplicationContext()

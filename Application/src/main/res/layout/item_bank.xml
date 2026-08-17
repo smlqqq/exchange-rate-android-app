@@ -21,12 +21,17 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- bank header: logo + name -->
         <LinearLayout
+            android:id="@+id/bankHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/bankLogo"
@@ -62,50 +67,122 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <TextView
+            <!-- Empty space to match currency code column (weight 2) -->
+            <View
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="2" />
 
-            <TextView
+            <!-- Buy Header (weight 1) -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/buy"
-                android:textAlignment="center"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_buy"
+                    android:contentDescription="@null"
+                    app:tint="@color/text_secondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/buy"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
+            <!-- Sell Header (weight 1) -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/sell"
-                android:textAlignment="center"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_sell"
+                    android:contentDescription="@null"
+                    app:tint="@color/text_secondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/sell"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Extra space to match the chevron in currency rows (20dp width + 8dp margin) -->
+            <View
+                android:layout_width="28dp"
+                android:layout_height="0dp" />
         </LinearLayout>
 
-        <include
-            android:id="@+id/rowUsd"
-            layout="@layout/row_currency" />
+        <!-- currency rows; expanded by default for simple view or clickable -->
+        <LinearLayout
+            android:id="@+id/containerUsd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+            <include
+                android:id="@+id/rowUsd"
+                layout="@layout/row_currency" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/rowEuro"
-            layout="@layout/row_currency" />
+        <LinearLayout
+            android:id="@+id/containerEuro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+            <include
+                android:id="@+id/rowEuro"
+                layout="@layout/row_currency" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/rowRon"
-            layout="@layout/row_currency" />
+        <LinearLayout
+            android:id="@+id/containerRon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+            <include
+                android:id="@+id/rowRon"
+                layout="@layout/row_currency" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/rowGbp"
-            layout="@layout/row_currency" />
+        <LinearLayout
+            android:id="@+id/containerGbp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+            <include
+                android:id="@+id/rowGbp"
+                layout="@layout/row_currency" />
+        </LinearLayout>
 
     </LinearLayout>
 

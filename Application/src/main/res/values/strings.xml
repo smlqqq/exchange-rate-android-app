@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Exchange rate</string>
-    <string name="app_title">Курсы валют</string>
-    <string name="app_subtitle">Молдова, сегодня</string>
+    <string name="app_title">Курсы валют Молдовы сегодня</string>
+    <string name="app_subtitle_format">Сегодня: %s</string>
     <string name="buy">Покупка</string>
     <string name="sell">Продажа</string>
     <string name="error_message">Не удалось загрузить курсы валют</string>

@@ -10,6 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -72,7 +76,15 @@ public class CalculatorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         setContentView(R.layout.activity_calculator);
+
+        View mainView = findViewById(android.R.id.content);
+        ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            return windowInsets;
+        });
 
         MaterialToolbar toolbar = findViewById(R.id.calcToolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
@@ -101,6 +113,28 @@ public class CalculatorActivity extends AppCompatActivity {
         setupBankSpinner();
         setupDirectionToggle();
         setupAmountInput();
+
+        String bankName = getIntent().getStringExtra("BANK_NAME");
+        String currencyCode = getIntent().getStringExtra("CURRENCY");
+
+        if (bankName != null) {
+            for (int i = 0; i < banks.size(); i++) {
+                if (banks.get(i).getBank().equals(bankName)) {
+                    bankSpinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+
+        if (currencyCode != null) {
+            Currency[] vals = Currency.values();
+            for (int i = 0; i < vals.length; i++) {
+                if (vals[i].getLabel().equals(currencyCode)) {
+                    currencySpinner.setSelection(i);
+                    break;
+                }
+            }
+        }
 
         recalculate();
     }

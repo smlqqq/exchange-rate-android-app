@@ -11,8 +11,10 @@
         <item name="colorOnSecondary">@color/on_primary</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/surface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
 
         <!-- Background and surface colors -->
         <item name="android:windowBackground">@color/background</item>
