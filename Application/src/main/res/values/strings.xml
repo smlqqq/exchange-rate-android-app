@@ -7,4 +7,14 @@
     <string name="sell">Продажа</string>
     <string name="error_message">Не удалось загрузить курсы валют</string>
     <string name="retry">Повторить</string>
+
+    <string name="calc_amount_hint">Сумма</string>
+    <string name="calc_currency_label">Валюта</string>
+    <string name="calc_bank_label">Банк</string>
+    <string name="calc_direction_to_mdl">Валюта → MDL</string>
+    <string name="calc_direction_to_currency">MDL → Валюта</string>
+    <string name="calc_no_rate">Банк не публикует курс этой валюты</string>
+    <string name="calc_empty_state">Сначала откройте список курсов на главном экране, потом вернитесь сюда</string>
+    <string name="fab_calculator_desc">Калькулятор</string>
+    <string name="title_activity_calculator">Калькулятор</string>
 </resources>
