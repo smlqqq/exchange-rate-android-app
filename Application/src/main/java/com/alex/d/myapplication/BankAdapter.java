@@ -27,6 +27,7 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
 
     private final Context context;
     private final Map<String, BankInfo> bankInfoByName = new HashMap<>();
+    private final Map<String, Boolean> expandedStates = new HashMap<>();
     private List<ListItemClass> items = new ArrayList<>();
 
     public BankAdapter(Context context, List<BankInfo> bankInfoList) {
@@ -68,7 +69,7 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
     public void onBindViewHolder(@NonNull BankViewHolder holder, int position) {
         ListItemClass item = items.get(position);
         BankInfo info = bankInfoByName.get(normalize(item.getBank()));
-        holder.bind(item, info, context);
+        holder.bind(item, info, context, expandedStates);
     }
 
     @Override
@@ -88,6 +89,8 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
         private final View containerEuro;
         private final View containerRon;
         private final View containerGbp;
+        private final View contentLayout;
+        private final ImageView chevron;
 
         BankViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,9 +105,12 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
             containerEuro = itemView.findViewById(R.id.containerEuro);
             containerRon = itemView.findViewById(R.id.containerRon);
             containerGbp = itemView.findViewById(R.id.containerGbp);
+
+            contentLayout = itemView.findViewById(R.id.bankContentLayout);
+            chevron = itemView.findViewById(R.id.bankChevron);
         }
 
-        void bind(ListItemClass item, BankInfo info, Context context) {
+        void bind(ListItemClass item, BankInfo info, Context context, Map<String, Boolean> expandedStates) {
             bankName.setText(item.getBank());
             logo.setImageResource(info != null ? info.getImageResId() : R.drawable.block);
 
@@ -118,16 +124,30 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
             setupClick(containerRon, item, "RON", context);
             setupClick(containerGbp, item, "GBP", context);
 
-            // Restore navigation to bank website on header click
-            final String url = info != null ? info.getUrl() : null;
+            // Handle expansion
+            boolean isExpanded = Boolean.TRUE.equals(expandedStates.get(item.getBank()));
+            contentLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+            chevron.setRotation(isExpanded ? 90f : 0f);
+
             View header = itemView.findViewById(R.id.bankHeader);
             if (header != null) {
                 header.setOnClickListener(v -> {
-                    if (url != null && !url.isEmpty()) {
-                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                    }
+                    boolean newState = !Boolean.TRUE.equals(expandedStates.get(item.getBank()));
+                    expandedStates.put(item.getBank(), newState);
+                    
+                    // Simple animation/transition
+                    contentLayout.setVisibility(newState ? View.VISIBLE : View.GONE);
+                    chevron.animate().rotation(newState ? 90f : 0f).setDuration(200).start();
                 });
             }
+
+            // Navigation to bank website on logo click
+            logo.setOnClickListener(v -> {
+                final String url = info != null ? info.getUrl() : null;
+                if (url != null && !url.isEmpty()) {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                }
+            });
         }
 
         private void setupClick(View view, ListItemClass item, String currency, Context context) {
