@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.alex.d.myapplication"
         minSdk 23
-        targetSdk 33
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -36,6 +36,8 @@ android {
 
 
 dependencies {
+    implementation 'androidx.work:work-runtime:2.11.2'
+
 // https://mvnrepository.com/artifact/com.android.application/com.android.application.gradle.plugin
     implementation group: 'com.android.application', name: 'com.android.application.gradle.plugin', version: '8.1.0', ext: 'pom'
 

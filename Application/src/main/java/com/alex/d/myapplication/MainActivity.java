@@ -3,39 +3,42 @@ package com.alex.d.myapplication;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.alex.d.myapplication.model.BankInfo;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String REFRESH_WORK_NAME = "exchange_rates_refresh";
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefresh;
     private ProgressBar loadingIndicator;
     private View errorState;
     private BankAdapter adapter;
-    private ExchangeRatesApi api;
+
+    private final WebScrapingService scraper = new WebScrapingService();
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -63,40 +66,66 @@ public class MainActivity extends AppCompatActivity {
         swipeRefresh.setOnRefreshListener(this::fetchData);
         retryButton.setOnClickListener(v -> fetchData());
 
-        // Retrofit setup
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://10.0.2.2:9099/") // Base URL with trailing slash
-                .baseUrl("https://exchange-rate-data-parser.onrender.com") // Base URL with trailing slash
-                .addConverterFactory(GsonConverterFactory.create()) // JSON converter
-                .build();
+        // show whatever we had cached from the last successful scrape immediately,
+        // instead of a blank spinner, while a fresh scrape runs in the background
+        List<ListItemClass> cached = ExchangeRatesRepository.getInstance().loadCached(this);
+        if (!cached.isEmpty()) {
+            adapter.submitList(cached);
+            showContent();
+        } else {
+            showLoading();
+        }
 
-        api = retrofit.create(ExchangeRatesApi.class);
-
-        showLoading();
+        scheduleBackgroundRefresh();
         fetchData();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        executor.shutdownNow();
+    }
+
+    /** Scrapes valutar.md on a background thread; safe to call repeatedly (pull-to-refresh, retry, startup). */
     private void fetchData() {
-        api.getExchangeRates().enqueue(new Callback<List<ListItemClass>>() {
-            @Override
-            public void onResponse(Call<List<ListItemClass>> call, Response<List<ListItemClass>> response) {
+        executor.execute(() -> {
+            List<ListItemClass> result = scraper.scrapeData();
+            runOnUiThread(() -> {
                 swipeRefresh.setRefreshing(false);
-                if (response.isSuccessful() && response.body() != null) {
-                    adapter.submitList(response.body());
-                    ExchangeRatesRepository.getInstance().setItems(response.body());
+                if (!result.isEmpty()) {
+                    adapter.submitList(result);
+                    ExchangeRatesRepository.getInstance().setItems(result);
+                    ExchangeRatesRepository.getInstance().persist(this);
                     showContent();
                 } else {
                     showError();
                 }
-            }
-
-            @Override
-            public void onFailure(Call<List<ListItemClass>> call, Throwable t) {
-                Log.e("Retrofit", "Failed to fetch exchange rates: " + t.getMessage());
-                swipeRefresh.setRefreshing(false);
-                showError();
-            }
+            });
         });
+    }
+
+    /**
+     * Registers a periodic background scrape every 30 minutes so data stays
+     * fresh even if the app isn't opened. 30 minutes is well above
+     * WorkManager's 15-minute floor and matches how often bank rates
+     * actually change in practice (a few times a day at most).
+     * ExistingPeriodicWorkPolicy.KEEP means calling this on every app start
+     * is harmless — it won't reschedule if a job is already queued.
+     */
+    private void scheduleBackgroundRefresh() {
+        Constraints constraints = new Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build();
+
+        PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(
+                ExchangeRatesWorker.class, 30, TimeUnit.MINUTES)
+                .setConstraints(constraints)
+                .build();
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+                REFRESH_WORK_NAME,
+                ExistingPeriodicWorkPolicy.KEEP,
+                request);
     }
 
     private void showLoading() {
@@ -113,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Only shows the full-screen error state if we don't already have data on
-     * screen. If a background refresh fails but we're already showing a list,
-     * we keep the list visible instead of yanking it away for a transient
-     * network hiccup.
+     * screen (cached or freshly loaded). If a background refresh fails but
+     * we're already showing a list, we keep the list visible instead of
+     * yanking it away for a transient network hiccup.
      */
     private void showError() {
         loadingIndicator.setVisibility(View.GONE);
