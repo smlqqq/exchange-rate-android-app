@@ -13,10 +13,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/surface"
         app:navigationIcon="@drawable/ic_back"
-        app:title="Калькулятор"
+        app:title="@string/title_activity_calculator"
         app:titleTextColor="@color/text_primary" />
 
-    <!-- shown when the user opens the calculator before the main list has ever loaded data -->
     <LinearLayout
         android:id="@+id/calcEmptyState"
         android:layout_width="match_parent"
@@ -28,8 +27,8 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:contentDescription="@null"
             android:src="@drawable/ic_calculator"
             app:tint="@color/text_secondary" />
@@ -61,13 +60,18 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/calc_amount_hint">
+                android:hint="@string/calc_amount_hint"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/amountInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
+                    android:textColor="@color/text_primary"
                     android:text="100" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -75,40 +79,42 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/calc_currency_label"
                 android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/currencySpinner"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="4dp"
-                android:background="@color/surface"
-                android:padding="8dp" />
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_spinner"
+                android:paddingHorizontal="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/calc_bank_label"
                 android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/bankSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="4dp"
-                android:background="@color/surface"
-                android:padding="8dp" />
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_spinner"
+                android:paddingHorizontal="12dp" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/directionToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 app:selectionRequired="true"
                 app:singleSelection="true">
 
@@ -120,7 +126,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:text="@string/calc_direction_to_mdl"
-                    android:textSize="12sp" />
+                    app:cornerRadius="12dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnMdlToCurrency"
@@ -129,17 +135,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/calc_direction_to_currency"
-                    android:textSize="12sp" />
+                    app:cornerRadius="12dp" />
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:cardBackgroundColor="@color/primary_light"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/primary"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
@@ -147,16 +153,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:padding="28dp">
 
                     <TextView
                         android:id="@+id/resultText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primary_dark"
-                        android:textSize="28sp"
+                        android:textColor="@color/on_primary"
+                        android:textSize="32sp"
                         android:textStyle="bold"
-                        tools:ignore="HardcodedText"
                         tools:text="1 732.00 MDL" />
 
                     <TextView
@@ -165,9 +170,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:textAlignment="center"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp"
-                        tools:ignore="HardcodedText"
+                        android:textColor="@color/on_primary"
+                        android:alpha="0.8"
+                        android:textSize="14sp"
                         tools:text="1 USD = 17.32 MDL (Banca Națională, покупка)" />
 
                 </LinearLayout>

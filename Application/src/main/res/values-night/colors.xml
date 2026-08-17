@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Mode Brand -->
+    <color name="primary">#78A2FF</color>
+    <color name="primary_variant">#2F6FED</color>
+    <color name="on_primary">#000000</color>
+
+    <!-- Dark Mode Surfaces -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="on_background">#E1E1E1</color>
+    <color name="on_surface">#E1E1E1</color>
+    <color name="divider">#2C2C2C</color>
+
+    <!-- Dark Mode Text -->
+    <color name="text_primary">#E1E1E1</color>
+    <color name="text_secondary">#A0A0A0</color>
+
+    <!-- Semantic: buy / sell -->
+    <color name="buy_color">#4ADE80</color>
+    <color name="sell_color">#F87171</color>
+
+    <color name="ripple">#1F78A2FF</color>
+</resources>
