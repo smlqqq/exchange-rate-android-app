@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Curs Valutar</string>
+    <string name="app_name">Curs Valutar Bănci Moldova</string>
     <string name="app_title">Cursul valutar în Moldova astăzi</string>
     <string name="app_subtitle_format">Astăzi: %s</string>
     <string name="buy">Cumpărare</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Курсы валют</string>
+    <string name="app_name">Курсы валют банков Молдовы</string>
     <string name="app_title">Курсы валют Молдовы сегодня</string>
     <string name="app_subtitle_format">Сегодня: %s</string>
     <string name="buy">Покупка</string>

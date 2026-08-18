@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Exchange Rate</string>
+    <string name="app_name">Moldova Bank Exchange Rates</string>
     <string name="app_title">Moldova Exchange Rates Today</string>
     <string name="app_subtitle_format">Today: %s</string>
     <string name="buy">Buy</string>
