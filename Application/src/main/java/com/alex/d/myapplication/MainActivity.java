@@ -28,7 +28,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -68,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         swipeRefresh = findViewById(R.id.swipeRefresh);
         loadingIndicator = findViewById(R.id.loadingIndicator);
         errorState = findViewById(R.id.errorState);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         MaterialButton retryButton = findViewById(R.id.retryButton);
         FloatingActionButton calculatorFab = findViewById(R.id.calculatorFab);
         calculatorFab.setOnClickListener(v ->
@@ -116,12 +118,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toggleTheme() {
+        String[] options = {"Светлая", "Темная", "Системная"};
+        int checkedItem = 2; // Default to System
+        
         int currentMode = AppCompatDelegate.getDefaultNightMode();
-        if (currentMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
+        if (currentMode == AppCompatDelegate.MODE_NIGHT_NO) checkedItem = 0;
+        else if (currentMode == AppCompatDelegate.MODE_NIGHT_YES) checkedItem = 1;
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                .setTitle("Выберите тему")
+                .setSingleChoiceItems(options, checkedItem, (dialog, which) -> {
+                    if (which == 0) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    } else if (which == 1) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    }
+                    dialog.dismiss();
+                })
+                .show();
     }
 
     @Override

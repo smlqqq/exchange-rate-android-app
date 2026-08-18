@@ -17,4 +17,6 @@
     <string name="calc_empty_state">Сначала откройте список курсов на главном экране, потом вернитесь сюда</string>
     <string name="fab_calculator_desc">Калькулятор</string>
     <string name="title_activity_calculator">Калькулятор</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_exit">Выход</string>
 </resources>
