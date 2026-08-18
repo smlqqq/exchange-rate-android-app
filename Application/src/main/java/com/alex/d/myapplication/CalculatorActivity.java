@@ -208,17 +208,19 @@ public class CalculatorActivity extends AppCompatActivity {
         double sell = parseOrZero(sellStr);
         double amount = parseOrZero(amountInput.getText() != null ? amountInput.getText().toString() : "");
 
+        String directionLabel = direction == Direction.CURRENCY_TO_MDL ? getString(R.string.buy) : getString(R.string.sell);
+        double rate = direction == Direction.CURRENCY_TO_MDL ? buy : sell;
+
         if (direction == Direction.CURRENCY_TO_MDL) {
             double result = amount * buy;
-            resultText.setText(String.format(Locale.getDefault(), "%.2f MDL", result));
-            rateInfoText.setText(String.format(Locale.getDefault(),
-                    "1 %s = %.2f MDL (%s, покупка)", currency.getLabel(), buy, bank.getBank()));
+            resultText.setText(String.format(Locale.getDefault(), "%.2f %s", result, getString(R.string.mdl)));
         } else {
             double result = sell != 0 ? amount / sell : 0;
             resultText.setText(String.format(Locale.getDefault(), "%.2f %s", result, currency.getLabel()));
-            rateInfoText.setText(String.format(Locale.getDefault(),
-                    "1 %s = %.2f MDL (%s, продажа)", currency.getLabel(), sell, bank.getBank()));
         }
+
+        rateInfoText.setText(getString(R.string.calc_rate_info_format,
+                currency.getLabel(), rate, bank.getBank(), directionLabel.toLowerCase(Locale.getDefault())));
     }
 
     private static boolean isEmpty(String s) {

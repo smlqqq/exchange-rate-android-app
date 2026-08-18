@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
+import androidx.core.os.LocaleListCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,6 +27,7 @@ import androidx.work.WorkManager;
 import com.alex.d.myapplication.model.BankInfo;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_theme) {
-            toggleTheme();
+            showSettingsDialog();
             return true;
         } else if (id == R.id.action_exit) {
             finishAffinity();
@@ -117,16 +119,31 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void toggleTheme() {
-        String[] options = {"Светлая", "Темная", "Системная"};
+    private void showSettingsDialog() {
+        String[] mainOptions = {getString(R.string.settings_theme), getString(R.string.settings_language)};
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.settings_title)
+                .setItems(mainOptions, (dialog, which) -> {
+                    if (which == 0) {
+                        showThemeDialog();
+                    } else {
+                        showLanguageDialog();
+                    }
+                })
+                .show();
+    }
+
+    private void showThemeDialog() {
+        String[] options = {getString(R.string.theme_light), getString(R.string.theme_dark), getString(R.string.theme_system)};
         int checkedItem = 2; // Default to System
-        
+
         int currentMode = AppCompatDelegate.getDefaultNightMode();
         if (currentMode == AppCompatDelegate.MODE_NIGHT_NO) checkedItem = 0;
         else if (currentMode == AppCompatDelegate.MODE_NIGHT_YES) checkedItem = 1;
 
-        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                .setTitle("Выберите тему")
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.settings_theme)
                 .setSingleChoiceItems(options, checkedItem, (dialog, which) -> {
                     if (which == 0) {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -135,6 +152,25 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                     }
+                    dialog.dismiss();
+                })
+                .show();
+    }
+
+    private void showLanguageDialog() {
+        String[] options = {getString(R.string.lang_en), getString(R.string.lang_ru), getString(R.string.lang_ro)};
+        String[] codes = {"en", "ru", "ro"};
+
+        int checkedItem = 0;
+        String currentLang = AppCompatDelegate.getApplicationLocales().toLanguageTags();
+        if (currentLang.startsWith("ru")) checkedItem = 1;
+        else if (currentLang.startsWith("ro")) checkedItem = 2;
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.settings_language)
+                .setSingleChoiceItems(options, checkedItem, (dialog, which) -> {
+                    LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(codes[which]);
+                    AppCompatDelegate.setApplicationLocales(appLocale);
                     dialog.dismiss();
                 })
                 .show();

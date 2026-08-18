@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Curs Valutar</string>
+    <string name="app_title">Cursul valutar în Moldova astăzi</string>
+    <string name="app_subtitle_format">Astăzi: %s</string>
+    <string name="buy">Cumpărare</string>
+    <string name="sell">Vânzare</string>
+    <string name="error_message">Eroare la încărcarea cursurilor valutare</string>
+    <string name="retry">Reîncearcă</string>
+
+    <string name="calc_amount_hint">Sumă</string>
+    <string name="calc_currency_label">Valută</string>
+    <string name="calc_bank_label">Bancă</string>
+    <string name="calc_direction_to_mdl">Valută → MDL</string>
+    <string name="calc_direction_to_currency">MDL → Valută</string>
+    <string name="calc_no_rate">Banca nu publică cursul pentru această valută</string>
+    <string name="calc_empty_state">Mai întâi deschideți lista cursurilor pe ecranul principal, apoi reveniți aici</string>
+    <string name="fab_calculator_desc">Calculator</string>
+    <string name="title_activity_calculator">Calculator</string>
+    <string name="menu_settings">Setări</string>
+    <string name="menu_exit">Ieșire</string>
+
+    <string name="settings_title">Setări</string>
+    <string name="settings_theme">Temă</string>
+    <string name="settings_language">Limbă</string>
+    <string name="theme_light">Luminoasă</string>
+    <string name="theme_dark">Întunecată</string>
+    <string name="theme_system">Sistem</string>
+    <string name="lang_en">Engleză</string>
+    <string name="lang_ru">Rusă</string>
+    <string name="lang_ro">Română</string>
+    <string name="calc_rate_info_format">1 %1$s = %2$.2f MDL (%3$s, %4$s)</string>
+    <string name="mdl">MDL</string>
+</resources>
