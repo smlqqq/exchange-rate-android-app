@@ -209,7 +209,7 @@ public class CalculatorActivity extends AppCompatActivity {
         double amount = parseOrZero(amountInput.getText() != null ? amountInput.getText().toString() : "");
 
         String directionLabel = direction == Direction.CURRENCY_TO_MDL ? getString(R.string.buy) : getString(R.string.sell);
-        double rate = direction == Direction.CURRENCY_TO_MDL ? buy : sell;
+        double rateValue = direction == Direction.CURRENCY_TO_MDL ? buy : sell;
 
         if (direction == Direction.CURRENCY_TO_MDL) {
             double result = amount * buy;
@@ -220,7 +220,7 @@ public class CalculatorActivity extends AppCompatActivity {
         }
 
         rateInfoText.setText(getString(R.string.calc_rate_info_format,
-                currency.getLabel(), rate, bank.getBank(), directionLabel.toLowerCase(Locale.getDefault())));
+                currency.getLabel(), rateValue, bank.getBank(), directionLabel.toLowerCase(Locale.getDefault())));
     }
 
     private static boolean isEmpty(String s) {

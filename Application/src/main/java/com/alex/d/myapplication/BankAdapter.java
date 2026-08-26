@@ -181,8 +181,17 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BankViewHolder
                     && sellValue != null && !sellValue.isEmpty();
             row.setVisibility(hasData ? View.VISIBLE : View.GONE);
             if (hasData) {
-                buy.setText(buyValue);
-                sell.setText(sellValue);
+                buy.setText(formatRate(buyValue));
+                sell.setText(formatRate(sellValue));
+            }
+        }
+
+        private String formatRate(String rate) {
+            try {
+                double value = Double.parseDouble(rate.replace(',', '.'));
+                return String.format(Locale.US, "%.2f", value);
+            } catch (Exception e) {
+                return rate;
             }
         }
     }
